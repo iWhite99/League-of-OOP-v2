@@ -1,7 +1,7 @@
 package sites;
 
-/**
- * TO BE DONE: IMPLEMENT DOUBLE DISPATCH FOR AMPLIFIERS.
- */
+import heroes.Hero;
+
 public interface Site {
+  void acceptSiteAmplifier(Hero hero);
 }

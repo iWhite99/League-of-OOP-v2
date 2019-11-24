@@ -8,11 +8,17 @@ import abilities.FireblastAbility;
 import abilities.IgniteAbility;
 import abilities.ParalysisAbility;
 import abilities.SlamAbility;
+import sites.DesertSite;
+import sites.LandSite;
+import sites.Site;
+import sites.VolcanicSite;
+import sites.WoodsSite;
 import utils.Constants;
 
 public class Wizard extends Hero {
+
   @Override
-  public final void fight(final Hero hero) {
+  public final void fight(final Hero hero, final Site site) {
 
   }
 
@@ -54,5 +60,25 @@ public class Wizard extends Hero {
   @Override
   public final void visitRaceAmplifier(final DeflectAbility deflectAbility) {
     this.setAmplifier(Constants.DEFLECT_WIZARD_AMPLIFIER);
+  }
+
+  @Override
+  public final void visitSiteAmplifier(final DesertSite desertSite) {
+    this.setAmplifier(Constants.DESERT_SITE_WIZARD_AMPLIFIER);
+  }
+
+  @Override
+  public final void visitSiteAmplifier(final LandSite landSite) {
+    this.setAmplifier(Constants.NO_AMPLIFIER);
+  }
+
+  @Override
+  public final void visitSiteAmplifier(final VolcanicSite volcanicSite) {
+    this.setAmplifier(Constants.NO_AMPLIFIER);
+  }
+
+  @Override
+  public final void visitSiteAmplifier(final WoodsSite woodsSite) {
+    this.setAmplifier(Constants.NO_AMPLIFIER);
   }
 }

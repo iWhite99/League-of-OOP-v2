@@ -80,6 +80,15 @@ public final class Constants {
   public static final int PARALYSIS_ROUNDS = 3;
   public static final int PARALYSIS_ROUNDS_WOODS = 6;
 
+  public static final float NO_AMPLIFIER = 1;
+  public static final float VOLCANIC_SITE_PYROMANCER_AMPLIFIER = 1.25f;
+  public static final float LAND_SITE_KNIGHT_AMPLIFIER = 1.15f;
+  public static final float DESERT_SITE_WIZARD_AMPLIFIER = 1.1f;
+  public static final float WOODS_SITE_ROGUE_AMPLIFIER = 1.15f;
+
+  public static final int BASE_XP = 250;
+  public static final int LEVEL_UP_XP_AMPLIFIER = 50;
+
   private Constants() {
 
   }
