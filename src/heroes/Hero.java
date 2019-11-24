@@ -1,10 +1,19 @@
 package heroes;
 
+import abilities.BackstabAbility;
+import abilities.DeflectAbility;
+import abilities.DrainAbility;
+import abilities.ExecuteAbility;
+import abilities.FireblastAbility;
+import abilities.IgniteAbility;
+import abilities.ParalysisAbility;
+import abilities.SlamAbility;
 import moves.Move;
 import utils.Position;
 
 /**
- * TO BE DONE: IMPLEMENT DOUBLE DISPATCH FOR AMPLIFIERS AND MOVEMENT.
+ * Implemented visitor pattern to get the race amplifiers
+ * TO BE DONE: IMPLEMENT DOUBLE DISPATCH FOR LAND AMPLIFIERS AND MOVEMENT.
  */
 public abstract class Hero {
   private int xp = 0;  // Initialize xp with 0
@@ -97,4 +106,15 @@ public abstract class Hero {
   public final void setMoves(final Move[] moves) {
     this.moves = moves;
   }
+
+  public abstract void fight(Hero hero);
+  // Visitors
+  public abstract void visitRaceAmplifier(ExecuteAbility executeAbility);
+  public abstract void visitRaceAmplifier(SlamAbility slamAbility);
+  public abstract void visitRaceAmplifier(FireblastAbility fireblastAbility);
+  public abstract void visitRaceAmplifier(IgniteAbility igniteAbility);
+  public abstract void visitRaceAmplifier(BackstabAbility backstabAbility);
+  public abstract void visitRaceAmplifier(ParalysisAbility paralysisAbility);
+  public abstract void visitRaceAmplifier(DrainAbility drainAbility);
+  public abstract void visitRaceAmplifier(DeflectAbility deflectAbility);
 }

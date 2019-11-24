@@ -1,4 +1,58 @@
 package heroes;
 
+import abilities.BackstabAbility;
+import abilities.DeflectAbility;
+import abilities.DrainAbility;
+import abilities.ExecuteAbility;
+import abilities.FireblastAbility;
+import abilities.IgniteAbility;
+import abilities.ParalysisAbility;
+import abilities.SlamAbility;
+import utils.Constants;
+
 public class Pyromancer extends Hero {
+  @Override
+  public final void fight(final Hero hero) {
+
+  }
+
+  @Override
+  public final void visitRaceAmplifier(final ExecuteAbility executeAbility) {
+    this.setAmplifier(Constants.EXECUTE_PYROMANCER_AMPLIFIER);
+  }
+
+  @Override
+  public final void visitRaceAmplifier(final SlamAbility slamAbility) {
+    this.setAmplifier(Constants.SLAM_PYROMANCER_AMPLIFIER);
+  }
+
+  @Override
+  public final void visitRaceAmplifier(final FireblastAbility fireblastAbility) {
+    this.setAmplifier(Constants.FIREBLAST_PYROMANCER_AMPLIFIER);
+  }
+
+  @Override
+  public final void visitRaceAmplifier(final IgniteAbility igniteAbility) {
+    this.setAmplifier(Constants.IGNITE_PYROMANCER_AMPLIFIER);
+  }
+
+  @Override
+  public final void visitRaceAmplifier(final BackstabAbility backstabAbility) {
+    this.setAmplifier(Constants.BACKSTAB_PYROMANCER_AMPLIFIER);
+  }
+
+  @Override
+  public final void visitRaceAmplifier(final ParalysisAbility paralysisAbility) {
+    this.setAmplifier(Constants.PARALYSIS_PYROMANCER_AMPLIFIER);
+  }
+
+  @Override
+  public final void visitRaceAmplifier(final DrainAbility drainAbility) {
+    this.setAmplifier(Constants.DRAIN_PYROMANCER_AMPLIFIER);
+  }
+
+  @Override
+  public final void visitRaceAmplifier(final DeflectAbility deflectAbility) {
+    this.setAmplifier(Constants.DEFLECT_PYROMANCER_AMPLIFIER);
+  }
 }
