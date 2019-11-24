@@ -1,7 +1,7 @@
 package moves;
 
-/**
- * TO BE DONE: IMPLEMENT DOUBLE DISPATCH FOR UPDATING POSITION.
- */
+import heroes.Hero;
+
 public interface Move {
+  void acceptMove(Hero hero);
 }

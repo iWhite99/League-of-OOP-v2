@@ -9,6 +9,11 @@ import abilities.IgniteAbility;
 import abilities.ParalysisAbility;
 import abilities.SlamAbility;
 import moves.Move;
+import moves.MoveDown;
+import moves.MoveLeft;
+import moves.MoveRight;
+import moves.MoveUp;
+import moves.NoMove;
 import sites.DesertSite;
 import sites.LandSite;
 import sites.Site;
@@ -18,8 +23,7 @@ import utils.Constants;
 import utils.Position;
 
 /**
- * Implemented visitor patterns to get the race amplifiers and site amplifiers
- * TO BE DONE: IMPLEMENT DOUBLE DISPATCH FOR MOVEMENT.
+ * Implemented visitor patterns to get the race amplifiers, site amplifiers and movement.
  */
 public abstract class Hero {
   private int xp = 0;  // Initialize xp with 0
@@ -160,4 +164,21 @@ public abstract class Hero {
   public abstract void visitSiteAmplifier(LandSite landSite);
   public abstract void visitSiteAmplifier(VolcanicSite volcanicSite);
   public abstract void visitSiteAmplifier(WoodsSite woodsSite);
+  // Movement Visitors
+  // No need to implement in each type of hero
+  public final void visitMove(final MoveUp moveUp) {
+    this.position.setCurrentRow(this.position.getCurrentRow() - 1);
+  }
+  public final void visitMove(final MoveDown moveDown) {
+    this.position.setCurrentRow(this.position.getCurrentRow() + 1);
+  }
+  public final void visitMove(final MoveLeft moveLeft) {
+    this.position.setCurrentColumn(this.position.getCurrentColumn() - 1);
+  }
+  public final void visitMove(final MoveRight moveRight) {
+    this.position.setCurrentColumn(this.position.getCurrentColumn() + 1);
+  }
+  public final void visitMove(final NoMove noMove) {
+
+  }
 }
