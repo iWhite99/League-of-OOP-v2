@@ -89,6 +89,15 @@ public final class Constants {
   public static final int BASE_XP = 250;
   public static final int LEVEL_UP_XP_AMPLIFIER = 50;
 
+  public static final int PYROMANCER_BASE_HP = 500;
+  public static final int PYROMANCER_HP_INCREASE = 50;
+  public static final int KNIGHT_BASE_HP = 900;
+  public static final int KNIGHT_HP_INCREASE = 80;
+  public static final int WIZARD_BASE_HP = 400;
+  public static final int WIZARD_HP_INCREASE = 30;
+  public static final int ROGUE_BASE_HP = 600;
+  public static final int ROGUE_HP_INCREASE = 40;
+
   private Constants() {
 
   }

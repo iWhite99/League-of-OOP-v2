@@ -19,6 +19,9 @@ public class Pyromancer extends Hero {
 
   public Pyromancer(final int id) {
     super(id);
+    this.setMaxHp(Constants.PYROMANCER_BASE_HP);
+    this.setCurrentHp(this.getMaxHp());
+    this.setHpIncrease(Constants.PYROMANCER_HP_INCREASE);
   }
 
   @Override

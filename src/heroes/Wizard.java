@@ -19,6 +19,9 @@ public class Wizard extends Hero {
 
   public Wizard(final int id) {
     super(id);
+    this.setMaxHp(Constants.WIZARD_BASE_HP);
+    this.setCurrentHp(this.getMaxHp());
+    this.setHpIncrease(Constants.WIZARD_HP_INCREASE);
   }
 
   @Override

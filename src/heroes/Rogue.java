@@ -20,6 +20,9 @@ public class Rogue extends Hero {
 
   public Rogue(final int id) {
     super(id);
+    this.setMaxHp(Constants.ROGUE_BASE_HP);
+    this.setCurrentHp(this.getMaxHp());
+    this.setHpIncrease(Constants.ROGUE_HP_INCREASE);
   }
 
   @Override

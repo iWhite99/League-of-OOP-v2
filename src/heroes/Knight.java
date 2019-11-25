@@ -21,6 +21,9 @@ public class Knight extends Hero {
 
   public Knight(final int id) {
     super(id);
+    this.setMaxHp(Constants.KNIGHT_BASE_HP);
+    this.setCurrentHp(this.getMaxHp());
+    this.setHpIncrease(Constants.KNIGHT_HP_INCREASE);
   }
 
   @Override
