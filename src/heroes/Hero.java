@@ -26,6 +26,7 @@ import utils.Position;
  * Implemented visitor patterns to get the race amplifiers, site amplifiers and movement.
  */
 public abstract class Hero {
+  private int id = -1;  // Set for each player according to the initial order
   private int xp = 0;  // Initialize xp with 0
   private int levelUpXp = Constants.BASE_XP;  // The first level up is at 250xp
   private int level = 0;  // Initialize level with 0
@@ -38,6 +39,18 @@ public abstract class Hero {
   private int roundsLeft = 0;  // Initialize rounds left for overtime damage, set when attacked
   private Position position;  // Store the current position on the map
   private Move[] moves;  // Store the moves for each hero
+
+  public Hero(final int id) {
+    this.id = id;
+  }
+
+  public final int getId() {
+    return id;
+  }
+
+  public final void setId(final int id) {
+    this.id = id;
+  }
 
   public final int getXp() {
     return xp;
@@ -159,13 +172,17 @@ public abstract class Hero {
   public abstract void visitRaceAmplifier(ParalysisAbility paralysisAbility);
   public abstract void visitRaceAmplifier(DrainAbility drainAbility);
   public abstract void visitRaceAmplifier(DeflectAbility deflectAbility);
+
   // Site amplifier Visitors
   public abstract void visitSiteAmplifier(DesertSite desertSite);
   public abstract void visitSiteAmplifier(LandSite landSite);
   public abstract void visitSiteAmplifier(VolcanicSite volcanicSite);
   public abstract void visitSiteAmplifier(WoodsSite woodsSite);
-  // Movement Visitors
-  // No need to implement in each type of hero
+
+  /*
+  Movement Visitors
+  No need to implement in each type of hero
+   */
   public final void visitMove(final MoveUp moveUp) {
     this.position.setCurrentRow(this.position.getCurrentRow() - 1);
   }
@@ -180,5 +197,13 @@ public abstract class Hero {
   }
   public final void visitMove(final NoMove noMove) {
 
+  }
+
+  /**
+   * @return Coefficients needed to compare in order to keep the hero array
+   *         in the order wanted in the game.
+   */
+  public int compareCoefficient() {
+    return 0;
   }
 }

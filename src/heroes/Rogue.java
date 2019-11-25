@@ -18,6 +18,10 @@ import utils.Constants;
 public class Rogue extends Hero {
   private int consecutiveRounds = 0;
 
+  public Rogue(final int id) {
+    super(id);
+  }
+
   @Override
   public final void fight(final Hero hero, final Site site) {
 

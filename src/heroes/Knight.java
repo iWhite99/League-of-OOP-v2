@@ -19,6 +19,10 @@ public class Knight extends Hero {
   private ExecuteAbility execute = new ExecuteAbility();
   private SlamAbility slam = new SlamAbility();
 
+  public Knight(final int id) {
+    super(id);
+  }
+
   @Override
   public final void fight(final Hero hero, final Site site) {
     execute.acceptRaceAmplifier(hero);

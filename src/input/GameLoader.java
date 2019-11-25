@@ -47,7 +47,7 @@ public class GameLoader {
       heroes = new Hero[heroesNumber];  // Allocate the heroes
       HeroFactory heroFactory = new HeroFactory();  // Used to generate different types of heroes
       for (int i = 0; i < heroesNumber; i++) {
-        heroes[i] = heroFactory.getHero(fileSystem.nextWord());
+        heroes[i] = heroFactory.getHero(fileSystem.nextWord(), i);
         // Get the wanted type of hero in the actual position
         Position initialPosition = new Position(fileSystem.nextInt(),
                 fileSystem.nextInt());

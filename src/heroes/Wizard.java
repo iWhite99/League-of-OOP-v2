@@ -17,6 +17,10 @@ import utils.Constants;
 
 public class Wizard extends Hero {
 
+  public Wizard(final int id) {
+    super(id);
+  }
+
   @Override
   public final void fight(final Hero hero, final Site site) {
 
@@ -80,5 +84,14 @@ public class Wizard extends Hero {
   @Override
   public final void visitSiteAmplifier(final WoodsSite woodsSite) {
     this.setAmplifier(Constants.NO_AMPLIFIER);
+  }
+
+  /**
+   * Wizards need to be attacked first in order to deflect the damage received.
+   * @return 1 for Comparator
+   */
+  @Override
+  public final int compareCoefficient() {
+    return 1;
   }
 }

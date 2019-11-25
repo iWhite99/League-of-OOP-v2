@@ -17,6 +17,10 @@ import utils.Constants;
 
 public class Pyromancer extends Hero {
 
+  public Pyromancer(final int id) {
+    super(id);
+  }
+
   @Override
   public final void fight(final Hero hero, final Site site) {
 
