@@ -16,6 +16,8 @@ import sites.WoodsSite;
 import utils.Constants;
 
 public class Pyromancer extends Hero {
+  private FireblastAbility fireblast = new FireblastAbility();
+  private IgniteAbility ignite = new IgniteAbility();
 
   public Pyromancer(final int id) {
     super(id);
@@ -87,5 +89,10 @@ public class Pyromancer extends Hero {
   @Override
   public final void visitSiteAmplifier(final WoodsSite woodsSite) {
     this.setAmplifier(Constants.NO_AMPLIFIER);
+  }
+
+  @Override
+  public final void updateAbilities() {
+
   }
 }

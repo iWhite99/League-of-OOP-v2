@@ -26,7 +26,7 @@ import utils.Position;
  * Implemented visitor patterns to get the race amplifiers, site amplifiers and movement.
  */
 public abstract class Hero {
-  private int id = -1;  // Set for each player according to the initial order
+  private int id;  // Set for each player according to the initial order
   private int xp = 0;  // Initialize xp with 0
   private int levelUpXp = Constants.BASE_XP;  // The first level up is at 250xp
   private int level = 0;  // Initialize level with 0
@@ -35,10 +35,11 @@ public abstract class Hero {
   private int maxHp = 0;  // Initialize hp with 0, set as needed for each type of hero
   private float amplifier = 1;  // Initialize with no damage amplifier
   private int damage = 0;  // Initialize damage with 0, set when attacked
+  private int damageWithoutAmplifier = 0;  // Initialize damage with 0, set when attacked
   private int overtimeDamage = 0;  // Initialize overtime damage with 0, set when attacked
   private int roundsLeft = 0;  // Initialize rounds left for overtime damage, set when attacked
-  private Position position;  // Store the current position on the map
-  private Move[] moves;  // Store the moves for each hero
+  private Position position = null;  // Store the current position on the map
+  private Move[] moves = null;  // Store the moves for each hero
 
   public Hero(final int id) {
     this.id = id;
@@ -116,6 +117,14 @@ public abstract class Hero {
     this.damage = damage;
   }
 
+  public final int getDamageWithoutAmplifier() {
+    return damageWithoutAmplifier;
+  }
+
+  public final void setDamageWithoutAmplifier(final int damageWithoutAmplifier) {
+    this.damageWithoutAmplifier = damageWithoutAmplifier;
+  }
+
   public final int getOvertimeDamage() {
     return overtimeDamage;
   }
@@ -156,6 +165,7 @@ public abstract class Hero {
       // Level Up Formula
       this.maxHp += this.hpIncrease;  // Update maximum hp
       this.currentHp = this.maxHp;  // After level up, hp will be 100%
+      this.updateAbilities();
       return true;
     }
     return false;
@@ -206,4 +216,6 @@ public abstract class Hero {
   public int compareCoefficient() {
     return 0;
   }
+
+  public abstract void updateAbilities();
 }

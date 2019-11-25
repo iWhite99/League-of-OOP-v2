@@ -16,6 +16,9 @@ import sites.WoodsSite;
 import utils.Constants;
 
 public class Rogue extends Hero {
+  private BackstabAbility backstab = new BackstabAbility();
+  private ParalysisAbility paralysis = new ParalysisAbility();
+
   private int consecutiveRounds = 0;
 
   public Rogue(final int id) {
@@ -88,6 +91,11 @@ public class Rogue extends Hero {
   @Override
   public final void visitSiteAmplifier(final WoodsSite woodsSite) {
     this.setAmplifier(Constants.WOODS_SITE_ROGUE_AMPLIFIER);
+  }
+
+  @Override
+  public final void updateAbilities() {
+
   }
 }
 

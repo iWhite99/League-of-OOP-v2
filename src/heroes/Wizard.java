@@ -16,6 +16,8 @@ import sites.WoodsSite;
 import utils.Constants;
 
 public class Wizard extends Hero {
+  private DrainAbility drain = new DrainAbility();
+  private DeflectAbility deflect = new DeflectAbility();
 
   public Wizard(final int id) {
     super(id);
@@ -96,5 +98,10 @@ public class Wizard extends Hero {
   @Override
   public final int compareCoefficient() {
     return 1;
+  }
+
+  @Override
+  public final void updateAbilities() {
+
   }
 }

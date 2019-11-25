@@ -32,6 +32,8 @@ public class Knight extends Hero {
     float raceAmplifier = hero.getAmplifier();
     site.acceptSiteAmplifier(this);
     float siteAmplifier = this.getAmplifier();
+    float totalAmplifier = raceAmplifier * siteAmplifier;
+    execute.applyDamage(hero, totalAmplifier);
   }
 
   @Override
@@ -92,5 +94,11 @@ public class Knight extends Hero {
   @Override
   public final void visitSiteAmplifier(final WoodsSite woodsSite) {
     this.setAmplifier(Constants.NO_AMPLIFIER);
+  }
+
+  @Override
+  public final void updateAbilities() {
+    this.execute.updateAbility(this);
+    this.slam.updateAbility(this);
   }
 }

@@ -76,5 +76,9 @@ public abstract class Ability {
             + hero.getLevel() * this.increaseOvertimeDamage;
   }
 
+  // Visitable Race Amplifiers
   public abstract void acceptRaceAmplifier(Hero hero);
+
+  // TO BE DONE: APPLY DAMAGE FOR EACH ABILTY
+  public abstract void applyDamage(Hero hero, float amplifier);
 }

@@ -14,4 +14,10 @@ public class BackstabAbility extends Ability {
   public final void acceptRaceAmplifier(final Hero hero) {
     hero.visitRaceAmplifier(this);
   }
+
+  @Override
+  public final void applyDamage(final Hero hero, final float amplifier) {
+
+  }
+
 }

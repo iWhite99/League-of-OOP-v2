@@ -98,6 +98,10 @@ public final class Constants {
   public static final int ROGUE_BASE_HP = 600;
   public static final int ROGUE_HP_INCREASE = 40;
 
+  public static final float EXECUTE_LIMIT = 0.2f;
+  public static final float EXECUTE_LIMIT_INCREASE = 0.01f;
+  public static final float MAX_EXECUTE_LIMIT = 0.4f;
+
   private Constants() {
 
   }
