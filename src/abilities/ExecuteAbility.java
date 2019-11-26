@@ -28,11 +28,11 @@ public class ExecuteAbility extends Ability {
     } else {
       damage = this.getCurrentDamage();
     }
-    hero.setDamageWithoutAmplifier(damage);
+    hero.setDamageWithoutAmplifier(hero.getDamageWithoutAmplifier() + damage);
     if (damage == hero.getCurrentHp()) {
       hero.setDamage(damage);
     } else {
-      hero.setDamage(Math.round(damage * amplifier));
+      hero.setDamage(hero.getDamage() + Math.round(damage * amplifier));
     }
   }
 

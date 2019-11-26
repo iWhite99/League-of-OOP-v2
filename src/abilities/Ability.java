@@ -11,6 +11,7 @@ public abstract class Ability {
   private int increaseOvertimeDamage = 0;
   private int currentOvertimeDamage = 0;
   private int rounds = 0;
+  // Initialize all with 0, set each as needed for each type of ability
 
   public final int getInitialDamage() {
     return initialDamage;
@@ -71,12 +72,13 @@ public abstract class Ability {
   /**
    * Updates the stats for the ability.
    * Modified by any ability that has different types of damage
-   * @param hero represents the hero whose stats will be improved - based by level
+   * @param hero represents the hero whose abilities will be improved - based by level
    */
   public void updateAbility(final Hero hero) {
     this.currentDamage = this.initialDamage + hero.getLevel() * this.increaseDamage;
     this.currentOvertimeDamage = this.initialOvertimeDamage
             + hero.getLevel() * this.increaseOvertimeDamage;
+    this.updateOvertimeAbility(hero);
   }
 
   public final void updateOvertimeAbility(final Hero hero) {
@@ -87,7 +89,7 @@ public abstract class Ability {
   // Visitable Race Amplifiers
   public abstract void acceptRaceAmplifier(Hero hero);
 
-  // TO BE DONE: APPLY DAMAGE FOR EACH ABILTY
+  // Applied damage for each type of ability
   public abstract void applyDamage(Hero hero, float amplifier, int round, int damageTaken,
                                    Site site);
 }

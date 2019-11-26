@@ -17,8 +17,8 @@ public class DeflectAbility extends Ability {
   public final void applyDamage(final Hero hero, final float amplifier, final int round,
                                 final int damageTaken, final Site site) {
     int damage = Math.round(this.currentPercent * damageTaken);
-    hero.setDamageWithoutAmplifier(damage);
-    hero.setDamage(Math.round(damage * amplifier));
+    hero.setDamageWithoutAmplifier(hero.getDamageWithoutAmplifier() + damage);
+    hero.setDamage(hero.getDamage() + Math.round(damage * amplifier));
   }
 
   @Override

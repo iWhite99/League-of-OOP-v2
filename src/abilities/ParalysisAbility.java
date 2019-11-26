@@ -25,9 +25,9 @@ public class ParalysisAbility extends Ability {
   @Override
   public final void applyDamage(final Hero hero, final float amplifier, final int round,
                                 final int damageTaken, final Site site) {
-    hero.setDamageWithoutAmplifier(this.getCurrentDamage());
-    hero.setDamage(Math.round(this.getCurrentDamage() * amplifier));
-    hero.setOvertimeDamage(this.getCurrentOvertimeDamage());
+    hero.setDamageWithoutAmplifier(hero.getDamageWithoutAmplifier() + this.getCurrentDamage());
+    hero.setDamage(hero.getDamage() + Math.round(this.getCurrentDamage() * amplifier));
+    hero.setOvertimeDamage(Math.round(this.getCurrentOvertimeDamage() * amplifier));
     if (site instanceof WoodsSite) {  // Needs to be modified
       hero.setRoundsLeft(Constants.PARALYSIS_ROUNDS_WOODS);
     } else {

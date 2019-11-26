@@ -19,8 +19,8 @@ public class DrainAbility extends Ability {
     float amplifiedPercent = this.currentPercent * amplifier;
     int baseDamage = Math.round(Math.min(Constants.DRAIN_AMPLIFIER
             * hero.getMaxHp(), hero.getCurrentHp()));
-    hero.setDamageWithoutAmplifier(baseDamage);
-    hero.setDamage(Math.round(amplifiedPercent * baseDamage));
+    hero.setDamageWithoutAmplifier(hero.getDamageWithoutAmplifier() + baseDamage);
+    hero.setDamage(hero.getDamage() + Math.round(amplifiedPercent * baseDamage));
   }
 
   @Override

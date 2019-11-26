@@ -21,8 +21,8 @@ public class SlamAbility extends Ability {
   public final void applyDamage(final Hero hero, final float amplifier, final int round,
                                 final int damageTaken, final Site site) {
     int damage = this.getCurrentDamage();
-    hero.setDamageWithoutAmplifier(damage);
-    hero.setDamage(Math.round(damage * amplifier));
+    hero.setDamageWithoutAmplifier(hero.getDamageWithoutAmplifier() + damage);
+    hero.setDamage(hero.getDamage() + Math.round(damage * amplifier));
     int roundsNumber = hero.getMoves().length;
     if (round < roundsNumber - 1) {
       hero.getMoves()[round + 1] = new NoMove();
