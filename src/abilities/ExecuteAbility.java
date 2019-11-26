@@ -1,12 +1,12 @@
 package abilities;
 
 import heroes.Hero;
+import sites.Site;
 import utils.Constants;
 
 public class ExecuteAbility extends Ability {
-  private float limit = Constants.EXECUTE_LIMIT;
-  private float limitIncrease = Constants.EXECUTE_LIMIT_INCREASE;
-  private float maxLimit = Constants.MAX_EXECUTE_LIMIT;
+  private float initialLimit = Constants.EXECUTE_LIMIT;
+  private float currentLimit = initialLimit;
 
   public ExecuteAbility() {
     this.setInitialDamage(Constants.EXECUTE_DAMAGE);
@@ -20,8 +20,27 @@ public class ExecuteAbility extends Ability {
   }
 
   @Override
-  public final void applyDamage(final Hero hero, final float amplifier) {
-
+  public final void applyDamage(final Hero hero, final float amplifier, final int round,
+                                final int damageTaken, final Site site) {
+    int damage;
+    if (currentLimit * hero.getMaxHp() <= hero.getCurrentHp()) {
+      damage = hero.getCurrentHp();
+    } else {
+      damage = this.getCurrentDamage();
+    }
+    hero.setDamageWithoutAmplifier(damage);
+    if (damage == hero.getCurrentHp()) {
+      hero.setDamage(damage);
+    } else {
+      hero.setDamage(Math.round(damage * amplifier));
+    }
   }
 
+  @Override
+  public final void updateAbility(final Hero hero) {
+    super.updateAbility(hero);
+    float limitIncrease = Constants.EXECUTE_LIMIT_INCREASE;
+    float maxLimit = Constants.MAX_EXECUTE_LIMIT;
+    this.currentLimit = Math.min(initialLimit + hero.getLevel() * limitIncrease, maxLimit);
+  }
 }

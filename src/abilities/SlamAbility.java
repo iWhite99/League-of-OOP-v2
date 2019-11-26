@@ -1,6 +1,8 @@
 package abilities;
 
 import heroes.Hero;
+import moves.NoMove;
+import sites.Site;
 import utils.Constants;
 
 public class SlamAbility extends Ability {
@@ -16,8 +18,14 @@ public class SlamAbility extends Ability {
   }
 
   @Override
-  public final void applyDamage(final Hero hero, final float amplifier) {
-
+  public final void applyDamage(final Hero hero, final float amplifier, final int round,
+                                final int damageTaken, final Site site) {
+    int damage = this.getCurrentDamage();
+    hero.setDamageWithoutAmplifier(damage);
+    hero.setDamage(Math.round(damage * amplifier));
+    int roundsNumber = hero.getMoves().length;
+    if (round < roundsNumber - 1) {
+      hero.getMoves()[round + 1] = new NoMove();
+    }
   }
-
 }

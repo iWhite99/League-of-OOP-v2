@@ -68,11 +68,12 @@ public final class Constants {
   public static final int EXECUTE_DAMAGE_INCREASE = 30;
   public static final int SLAM_DAMAGE = 100;
   public static final int SLAM_DAMAGE_INCREASE = 40;
-  public static final float DRAIN_PERCENT = 0.2f; //
+  public static final float DRAIN_PERCENT = 0.2f;
   public static final float DRAIN_PERCENT_INCREASE = 0.05f;
+  public static final float DRAIN_AMPLIFIER = 0.3f;
   public static final float DEFLECT_PERCENT = 0.35f;
   public static final float DEFLECT_PERCENT_INCREASE = 0.02f;
-  public static final float DRAIN_AMPLIFIER = 0.3f;
+  public static final float DEFLECT_MAX_PERCENT = 0.7f;
   public static final int BACKSTAB_DAMAGE = 200;
   public static final int BACKSTAB_DAMAGE_INCREASE = 20;
   public static final int PARALYSIS_DAMAGE = 40;

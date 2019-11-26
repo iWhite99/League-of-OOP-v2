@@ -1,6 +1,9 @@
 package abilities;
 
 import heroes.Hero;
+import moves.NoMove;
+import sites.Site;
+import sites.WoodsSite;
 import utils.Constants;
 
 public class ParalysisAbility extends Ability {
@@ -11,6 +14,7 @@ public class ParalysisAbility extends Ability {
     this.setInitialOvertimeDamage(Constants.PARALYSIS_DAMAGE);
     this.setCurrentOvertimeDamage(this.getInitialOvertimeDamage());
     this.setIncreaseOvertimeDamage(Constants.PARALYSIS_DAMAGE_INCREASE);
+    this.setRounds(Constants.PARALYSIS_ROUNDS);
   }
 
   @Override
@@ -19,8 +23,19 @@ public class ParalysisAbility extends Ability {
   }
 
   @Override
-  public final void applyDamage(final Hero hero, final float amplifier) {
-
+  public final void applyDamage(final Hero hero, final float amplifier, final int round,
+                                final int damageTaken, final Site site) {
+    hero.setDamageWithoutAmplifier(this.getCurrentDamage());
+    hero.setDamage(Math.round(this.getCurrentDamage() * amplifier));
+    hero.setOvertimeDamage(this.getCurrentOvertimeDamage());
+    if (site instanceof WoodsSite) {  // Needs to be modified
+      hero.setRoundsLeft(Constants.PARALYSIS_ROUNDS_WOODS);
+    } else {
+      hero.setRoundsLeft(Constants.PARALYSIS_ROUNDS);
+    }
+    for (int i = round + 1; i < hero.getMoves().length
+            && i - round - 1 < hero.getRoundsLeft(); i++) {
+      hero.getMoves()[i] = new NoMove();
+    }
   }
-
 }

@@ -33,7 +33,8 @@ public abstract class Hero {
   private int currentHp = 0;  // Initialize hp with 0, set as needed for each type of hero
   private int hpIncrease = 0;  // Initialize with 0, set as needed for each type of hero
   private int maxHp = 0;  // Initialize hp with 0, set as needed for each type of hero
-  private float amplifier = 1;  // Initialize with no damage amplifier
+  private float siteAmplifier = 1;  // Initialize with no site amplifier
+  private float raceAmplifier = 1;  // Initialize with no race amplifier
   private int damage = 0;  // Initialize damage with 0, set when attacked
   private int damageWithoutAmplifier = 0;  // Initialize damage with 0, set when attacked
   private int overtimeDamage = 0;  // Initialize overtime damage with 0, set when attacked
@@ -101,12 +102,20 @@ public abstract class Hero {
     this.maxHp = maxHp;
   }
 
-  public final float getAmplifier() {
-    return amplifier;
+  public final float getSiteAmplifier() {
+    return siteAmplifier;
   }
 
-  public final void setAmplifier(final float amplifier) {
-    this.amplifier = amplifier;
+  public final void setSiteAmplifier(final float siteAmplifier) {
+    this.siteAmplifier = siteAmplifier;
+  }
+
+  public final float getRaceAmplifier() {
+    return raceAmplifier;
+  }
+
+  public final void setRaceAmplifier(final float raceAmplifier) {
+    this.raceAmplifier = raceAmplifier;
   }
 
   public final int getDamage() {
@@ -171,7 +180,7 @@ public abstract class Hero {
     return false;
   }
 
-  public abstract void fight(Hero hero, Site site);
+  public abstract void fight(Hero hero, Site site, int round);
 
   // Race Amplifier Visitors
   public abstract void visitRaceAmplifier(ExecuteAbility executeAbility);

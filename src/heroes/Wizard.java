@@ -27,68 +27,68 @@ public class Wizard extends Hero {
   }
 
   @Override
-  public final void fight(final Hero hero, final Site site) {
+  public final void fight(final Hero hero, final Site site, final int round) {
 
   }
 
   @Override
   public final void visitRaceAmplifier(final ExecuteAbility executeAbility) {
-    this.setAmplifier(Constants.EXECUTE_WIZARD_AMPLIFIER);
+    this.setRaceAmplifier(Constants.EXECUTE_WIZARD_AMPLIFIER);
   }
 
   @Override
   public final void visitRaceAmplifier(final SlamAbility slamAbility) {
-    this.setAmplifier(Constants.SLAM_WIZARD_AMPLIFIER);
+    this.setRaceAmplifier(Constants.SLAM_WIZARD_AMPLIFIER);
   }
 
   @Override
   public final void visitRaceAmplifier(final FireblastAbility fireblastAbility) {
-    this.setAmplifier(Constants.FIREBLAST_WIZARD_AMPLIFIER);
+    this.setRaceAmplifier(Constants.FIREBLAST_WIZARD_AMPLIFIER);
   }
 
   @Override
   public final void visitRaceAmplifier(final IgniteAbility igniteAbility) {
-    this.setAmplifier(Constants.IGNITE_WIZARD_AMPLIFIER);
+    this.setRaceAmplifier(Constants.IGNITE_WIZARD_AMPLIFIER);
   }
 
   @Override
   public final void visitRaceAmplifier(final BackstabAbility backstabAbility) {
-    this.setAmplifier(Constants.BACKSTAB_WIZARD_AMPLIFIER);
+    this.setRaceAmplifier(Constants.BACKSTAB_WIZARD_AMPLIFIER);
   }
 
   @Override
   public final void visitRaceAmplifier(final ParalysisAbility paralysisAbility) {
-    this.setAmplifier(Constants.PARALYSIS_WIZARD_AMPLIFIER);
+    this.setRaceAmplifier(Constants.PARALYSIS_WIZARD_AMPLIFIER);
   }
 
   @Override
   public final void visitRaceAmplifier(final DrainAbility drainAbility) {
-    this.setAmplifier(Constants.DRAIN_WIZARD_AMPLIFIER);
+    this.setRaceAmplifier(Constants.DRAIN_WIZARD_AMPLIFIER);
   }
 
   @Override
   public final void visitRaceAmplifier(final DeflectAbility deflectAbility) {
-    this.setAmplifier(Constants.DEFLECT_WIZARD_AMPLIFIER);
+    this.setRaceAmplifier(Constants.DEFLECT_WIZARD_AMPLIFIER);
   }
 
   @Override
   public final void visitSiteAmplifier(final DesertSite desertSite) {
-    this.setAmplifier(Constants.DESERT_SITE_WIZARD_AMPLIFIER);
+    this.setRaceAmplifier(Constants.DESERT_SITE_WIZARD_AMPLIFIER);
   }
 
   @Override
   public final void visitSiteAmplifier(final LandSite landSite) {
-    this.setAmplifier(Constants.NO_AMPLIFIER);
+    this.setSiteAmplifier(Constants.NO_AMPLIFIER);
   }
 
   @Override
   public final void visitSiteAmplifier(final VolcanicSite volcanicSite) {
-    this.setAmplifier(Constants.NO_AMPLIFIER);
+    this.setSiteAmplifier(Constants.NO_AMPLIFIER);
   }
 
   @Override
   public final void visitSiteAmplifier(final WoodsSite woodsSite) {
-    this.setAmplifier(Constants.NO_AMPLIFIER);
+    this.setSiteAmplifier(Constants.NO_AMPLIFIER);
   }
 
   /**
@@ -102,6 +102,7 @@ public class Wizard extends Hero {
 
   @Override
   public final void updateAbilities() {
-
+    drain.updateAbility(this);
+    deflect.updateAbility(this);
   }
 }

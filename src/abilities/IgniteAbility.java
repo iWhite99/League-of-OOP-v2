@@ -1,6 +1,7 @@
 package abilities;
 
 import heroes.Hero;
+import sites.Site;
 import utils.Constants;
 
 public class IgniteAbility extends Ability {
@@ -20,8 +21,11 @@ public class IgniteAbility extends Ability {
   }
 
   @Override
-  public final void applyDamage(final Hero hero, final float amplifier) {
-
+  public final void applyDamage(final Hero hero, final float amplifier, final int round,
+                                final int damageTaken, final Site site) {
+    hero.setDamageWithoutAmplifier(this.getCurrentDamage());
+    hero.setDamage(Math.round(this.getCurrentDamage() * amplifier));
+    hero.setOvertimeDamage(Math.round(this.getCurrentOvertimeDamage() * amplifier));
+    hero.setRoundsLeft(this.getRounds());
   }
-
 }

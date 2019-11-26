@@ -27,72 +27,73 @@ public class Pyromancer extends Hero {
   }
 
   @Override
-  public final void fight(final Hero hero, final Site site) {
+  public final void fight(final Hero hero, final Site site, final int round) {
 
   }
 
   @Override
   public final void visitRaceAmplifier(final ExecuteAbility executeAbility) {
-    this.setAmplifier(Constants.EXECUTE_PYROMANCER_AMPLIFIER);
+    this.setRaceAmplifier(Constants.EXECUTE_PYROMANCER_AMPLIFIER);
   }
 
   @Override
   public final void visitRaceAmplifier(final SlamAbility slamAbility) {
-    this.setAmplifier(Constants.SLAM_PYROMANCER_AMPLIFIER);
+    this.setRaceAmplifier(Constants.SLAM_PYROMANCER_AMPLIFIER);
   }
 
   @Override
   public final void visitRaceAmplifier(final FireblastAbility fireblastAbility) {
-    this.setAmplifier(Constants.FIREBLAST_PYROMANCER_AMPLIFIER);
+    this.setRaceAmplifier(Constants.FIREBLAST_PYROMANCER_AMPLIFIER);
   }
 
   @Override
   public final void visitRaceAmplifier(final IgniteAbility igniteAbility) {
-    this.setAmplifier(Constants.IGNITE_PYROMANCER_AMPLIFIER);
+    this.setRaceAmplifier(Constants.IGNITE_PYROMANCER_AMPLIFIER);
   }
 
   @Override
   public final void visitRaceAmplifier(final BackstabAbility backstabAbility) {
-    this.setAmplifier(Constants.BACKSTAB_PYROMANCER_AMPLIFIER);
+    this.setRaceAmplifier(Constants.BACKSTAB_PYROMANCER_AMPLIFIER);
   }
 
   @Override
   public final void visitRaceAmplifier(final ParalysisAbility paralysisAbility) {
-    this.setAmplifier(Constants.PARALYSIS_PYROMANCER_AMPLIFIER);
+    this.setRaceAmplifier(Constants.PARALYSIS_PYROMANCER_AMPLIFIER);
   }
 
   @Override
   public final void visitRaceAmplifier(final DrainAbility drainAbility) {
-    this.setAmplifier(Constants.DRAIN_PYROMANCER_AMPLIFIER);
+    this.setRaceAmplifier(Constants.DRAIN_PYROMANCER_AMPLIFIER);
   }
 
   @Override
   public final void visitRaceAmplifier(final DeflectAbility deflectAbility) {
-    this.setAmplifier(Constants.DEFLECT_PYROMANCER_AMPLIFIER);
+    this.setRaceAmplifier(Constants.DEFLECT_PYROMANCER_AMPLIFIER);
   }
 
   @Override
   public final void visitSiteAmplifier(final DesertSite desertSite) {
-    this.setAmplifier(Constants.NO_AMPLIFIER);
+    this.setSiteAmplifier(Constants.NO_AMPLIFIER);
   }
 
   @Override
   public final void visitSiteAmplifier(final LandSite landSite) {
-    this.setAmplifier(Constants.NO_AMPLIFIER);
+    this.setSiteAmplifier(Constants.NO_AMPLIFIER);
   }
 
   @Override
   public final void visitSiteAmplifier(final VolcanicSite volcanicSite) {
-    this.setAmplifier(Constants.VOLCANIC_SITE_PYROMANCER_AMPLIFIER);
+    this.setSiteAmplifier(Constants.VOLCANIC_SITE_PYROMANCER_AMPLIFIER);
   }
 
   @Override
   public final void visitSiteAmplifier(final WoodsSite woodsSite) {
-    this.setAmplifier(Constants.NO_AMPLIFIER);
+    this.setSiteAmplifier(Constants.NO_AMPLIFIER);
   }
 
   @Override
   public final void updateAbilities() {
-
+    fireblast.updateAbility(this);
+    ignite.updateAbility(this);
   }
 }

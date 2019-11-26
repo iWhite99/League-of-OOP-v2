@@ -29,73 +29,74 @@ public class Rogue extends Hero {
   }
 
   @Override
-  public final void fight(final Hero hero, final Site site) {
+  public final void fight(final Hero hero, final Site site, final int round) {
 
   }
 
   @Override
   public final void visitRaceAmplifier(final ExecuteAbility executeAbility) {
-    this.setAmplifier(Constants.EXECUTE_ROGUE_AMPLIFIER);
+    this.setRaceAmplifier(Constants.EXECUTE_ROGUE_AMPLIFIER);
   }
 
   @Override
   public final void visitRaceAmplifier(final SlamAbility slamAbility) {
-    this.setAmplifier(Constants.SLAM_ROGUE_AMPLIFIER);
+    this.setRaceAmplifier(Constants.SLAM_ROGUE_AMPLIFIER);
   }
 
   @Override
   public final void visitRaceAmplifier(final FireblastAbility fireblastAbility) {
-    this.setAmplifier(Constants.FIREBLAST_ROGUE_AMPLIFIER);
+    this.setRaceAmplifier(Constants.FIREBLAST_ROGUE_AMPLIFIER);
   }
 
   @Override
   public final void visitRaceAmplifier(final IgniteAbility igniteAbility) {
-    this.setAmplifier(Constants.IGNITE_ROGUE_AMPLIFIER);
+    this.setRaceAmplifier(Constants.IGNITE_ROGUE_AMPLIFIER);
   }
 
   @Override
   public final void visitRaceAmplifier(final BackstabAbility backstabAbility) {
-    this.setAmplifier(Constants.BACKSTAB_ROGUE_AMPLIFIER);
+    this.setRaceAmplifier(Constants.BACKSTAB_ROGUE_AMPLIFIER);
   }
 
   @Override
   public final void visitRaceAmplifier(final ParalysisAbility paralysisAbility) {
-    this.setAmplifier(Constants.PARALYSIS_ROGUE_AMPLIFIER);
+    this.setRaceAmplifier(Constants.PARALYSIS_ROGUE_AMPLIFIER);
   }
 
   @Override
   public final void visitRaceAmplifier(final DrainAbility drainAbility) {
-    this.setAmplifier(Constants.DRAIN_ROGUE_AMPLIFIER);
+    this.setRaceAmplifier(Constants.DRAIN_ROGUE_AMPLIFIER);
   }
 
   @Override
   public final void visitRaceAmplifier(final DeflectAbility deflectAbility) {
-    this.setAmplifier(Constants.DEFLECT_ROGUE_AMPLIFIER);
+    this.setRaceAmplifier(Constants.DEFLECT_ROGUE_AMPLIFIER);
   }
 
   @Override
   public final void visitSiteAmplifier(final DesertSite desertSite) {
-    this.setAmplifier(Constants.NO_AMPLIFIER);
+    this.setSiteAmplifier(Constants.NO_AMPLIFIER);
   }
 
   @Override
   public final void visitSiteAmplifier(final LandSite landSite) {
-    this.setAmplifier(Constants.NO_AMPLIFIER);
+    this.setSiteAmplifier(Constants.NO_AMPLIFIER);
   }
 
   @Override
   public final void visitSiteAmplifier(final VolcanicSite volcanicSite) {
-    this.setAmplifier(Constants.NO_AMPLIFIER);
+    this.setSiteAmplifier(Constants.NO_AMPLIFIER);
   }
 
   @Override
   public final void visitSiteAmplifier(final WoodsSite woodsSite) {
-    this.setAmplifier(Constants.WOODS_SITE_ROGUE_AMPLIFIER);
+    this.setSiteAmplifier(Constants.WOODS_SITE_ROGUE_AMPLIFIER);
   }
 
   @Override
   public final void updateAbilities() {
-
+    backstab.updateAbility(this);
+    paralysis.updateAbility(this);
   }
 }
 
