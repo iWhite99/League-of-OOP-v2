@@ -28,7 +28,18 @@ public class Wizard extends Hero {
 
   @Override
   public final void fight(final Hero hero, final Site site, final int round) {
-
+    drain.acceptRaceAmplifier(hero);
+    site.acceptSiteAmplifier(this);
+    float raceAmplifier = hero.getRaceAmplifier();
+    float siteAmplifier = this.getSiteAmplifier();
+    float totalAmplifier = raceAmplifier * siteAmplifier;
+    drain.applyDamage(hero, totalAmplifier, round,
+            Math.round(this.getDamageWithoutAmplifier() * siteAmplifier), site);
+    deflect.acceptRaceAmplifier(hero);
+    raceAmplifier = hero.getRaceAmplifier();
+    totalAmplifier = raceAmplifier * siteAmplifier;
+    deflect.applyDamage(hero, totalAmplifier, round,
+            Math.round(this.getDamageWithoutAmplifier() * siteAmplifier), site);
   }
 
   @Override

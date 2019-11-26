@@ -28,7 +28,18 @@ public class Pyromancer extends Hero {
 
   @Override
   public final void fight(final Hero hero, final Site site, final int round) {
-
+    fireblast.acceptRaceAmplifier(hero);
+    site.acceptSiteAmplifier(this);
+    float raceAmplifier = hero.getRaceAmplifier();
+    float siteAmplifier = this.getSiteAmplifier();
+    float totalAmplifier = raceAmplifier * siteAmplifier;
+    fireblast.applyDamage(hero, totalAmplifier, round,
+            Math.round(this.getDamageWithoutAmplifier() * siteAmplifier), site);
+    ignite.acceptRaceAmplifier(hero);
+    raceAmplifier = hero.getRaceAmplifier();
+    totalAmplifier = raceAmplifier * siteAmplifier;
+    ignite.applyDamage(hero, totalAmplifier, round,
+            Math.round(this.getDamageWithoutAmplifier() * siteAmplifier), site);
   }
 
   @Override

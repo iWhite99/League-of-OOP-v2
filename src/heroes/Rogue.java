@@ -30,7 +30,18 @@ public class Rogue extends Hero {
 
   @Override
   public final void fight(final Hero hero, final Site site, final int round) {
-
+    backstab.acceptRaceAmplifier(hero);
+    site.acceptSiteAmplifier(this);
+    float raceAmplifier = hero.getRaceAmplifier();
+    float siteAmplifier = this.getSiteAmplifier();
+    float totalAmplifier = raceAmplifier * siteAmplifier;
+    backstab.applyDamage(hero, totalAmplifier, round,
+            Math.round(this.getDamageWithoutAmplifier() * siteAmplifier), site);
+    paralysis.acceptRaceAmplifier(hero);
+    raceAmplifier = hero.getRaceAmplifier();
+    totalAmplifier = raceAmplifier * siteAmplifier;
+    paralysis.applyDamage(hero, totalAmplifier, round,
+            Math.round(this.getDamageWithoutAmplifier() * siteAmplifier), site);
   }
 
   @Override

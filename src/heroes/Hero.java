@@ -180,6 +180,12 @@ public abstract class Hero {
     return false;
   }
 
+  /**
+   * Fighting method that needs to be implemented for each type of hero.
+   * @param hero represents the hero that will be attacked
+   * @param site represents the site where the fight will take place
+   * @param round represents the round number
+   */
   public abstract void fight(Hero hero, Site site, int round);
 
   // Race Amplifier Visitors
