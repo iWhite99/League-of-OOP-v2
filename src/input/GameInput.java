@@ -1,6 +1,7 @@
 package input;
 
 import heroes.Hero;
+import moves.Move;
 import sites.Site;
 
 public final class GameInput {
@@ -67,5 +68,81 @@ public final class GameInput {
 
   public void setRoundsNumber(final int roundsNumber) {
     this.roundsNumber = roundsNumber;
+  }
+
+  public void run() {
+    for (int i = 0; i < this.roundsNumber; i++) {
+      for (Hero currentHero : this.heroes) {
+        Move currentMove = currentHero.getMoves()[i];
+        currentMove.acceptMove(currentHero);
+        currentHero.setDamage(0);
+        currentHero.setDamageWithoutAmplifier(0);
+        if (currentHero.getRoundsLeft() > 0) {
+          if (currentHero.getCurrentHp() > 0) {
+            currentHero.setCurrentHp(currentHero.getCurrentHp() - currentHero.getOvertimeDamage());
+            currentHero.setRoundsLeft(currentHero.getRoundsLeft() - 1);
+          }
+          if (currentHero.getCurrentHp() < 0) {
+            currentHero.setCurrentHp(0);
+          }
+        }
+      }
+      for (int j = 0; j < this.heroes.length - 1; j++) {
+        Hero firstHero = this.heroes[j];
+        if (firstHero.getCurrentHp() > 0) {
+          for (int k = j + 1; k < this.heroes.length; k++) {
+            Hero secondHero = this.heroes[k];
+            if (secondHero.getCurrentHp() > 0) {
+              if (firstHero.getPosition().equals(secondHero.getPosition())) {
+                int currentRow = firstHero.getPosition().getCurrentRow();
+                int currentColumn = firstHero.getPosition().getCurrentColumn();
+                Site currentSite = this.siteMap[currentRow][currentColumn];
+                firstHero.fight(secondHero, currentSite, i);
+                secondHero.fight(firstHero, currentSite, i);
+                firstHero.setCurrentHp(firstHero.getCurrentHp() - firstHero.getDamage());
+                secondHero.setCurrentHp(secondHero.getCurrentHp() - secondHero.getDamage());
+                if (firstHero.getCurrentHp() < 0 && secondHero.getCurrentHp() < 0) {
+                  firstHero.setCurrentHp(0);
+                  secondHero.setCurrentHp(0);
+                }
+                if (firstHero.getCurrentHp() > 0 || secondHero.getCurrentHp() > 0) {
+                  if (firstHero.getCurrentHp() < 0) {
+                    firstHero.setCurrentHp(0);
+                    secondHero.setXp(secondHero.getXp() + Math.max(0,
+                            200 - (secondHero.getLevel() - firstHero.getLevel()) * 40));
+                    while (secondHero.levelUp()) {
+                      secondHero.setCurrentHp(secondHero.getMaxHp());
+                      // After level up, hp will be 100%
+                    }
+                  }
+                  if (secondHero.getCurrentHp() < 0) {
+                    secondHero.setCurrentHp(0);
+                    firstHero.setXp(firstHero.getXp() + Math.max(0,
+                            200 - (firstHero.getLevel() - secondHero.getLevel()) * 40));
+                    while (firstHero.levelUp()) {
+                      firstHero.setCurrentHp(firstHero.getMaxHp());
+                      // After level up, hp will be 100%
+                    }
+                  }
+                }
+              }
+//              System.out.println(firstHero.getDamageWithoutRaceAmplifier()[secondHero.getId()]);
+//              System.out.println(firstHero.getDamage());
+//              System.out.println(secondHero.getDamageWithoutRaceAmplifier()[firstHero.getId()]);
+//              System.out.println(secondHero.getDamage());
+            }
+          }
+        }
+      }
+      System.out.println();
+      System.out.println("ROUND " + i);
+      for (Hero currentHero : this.heroes) {
+        currentHero.setDamage(0);
+        currentHero.setDamageWithoutAmplifier(0);
+        System.out.println(currentHero.getId() + " " + currentHero.toString());
+      }
+      System.out.println("ENDROUND");
+      System.out.println();
+    }
   }
 }

@@ -30,18 +30,24 @@ public class Rogue extends Hero {
 
   @Override
   public final void fight(final Hero hero, final Site site, final int round) {
+    if (consecutiveRounds == 3) {
+      consecutiveRounds = 0;
+    }
     backstab.acceptRaceAmplifier(hero);
     site.acceptSiteAmplifier(this);
     float raceAmplifier = hero.getRaceAmplifier();
     float siteAmplifier = this.getSiteAmplifier();
-    float totalAmplifier = raceAmplifier * siteAmplifier;
-    backstab.applyDamage(hero, totalAmplifier, round,
-            Math.round(this.getDamageWithoutAmplifier() * siteAmplifier), site);
+    backstab.applyDamage(hero, raceAmplifier, siteAmplifier, round,
+            this.getDamageWithoutAmplifier(), site);
+    if (consecutiveRounds == 0 && site instanceof WoodsSite) {
+      hero.setDamageWithoutAmplifier(Math.round(hero.getDamageWithoutAmplifier() * 1.5f));
+      hero.setDamage(Math.round(hero.getDamage() * 1.5f));
+    }
     paralysis.acceptRaceAmplifier(hero);
     raceAmplifier = hero.getRaceAmplifier();
-    totalAmplifier = raceAmplifier * siteAmplifier;
-    paralysis.applyDamage(hero, totalAmplifier, round,
-            Math.round(this.getDamageWithoutAmplifier() * siteAmplifier), site);
+    paralysis.applyDamage(hero, raceAmplifier, siteAmplifier, round,
+            this.getDamageWithoutAmplifier(), site);
+    consecutiveRounds++;
   }
 
   @Override
@@ -108,6 +114,11 @@ public class Rogue extends Hero {
   public final void updateAbilities() {
     backstab.updateAbility(this);
     paralysis.updateAbility(this);
+  }
+
+  @Override
+  public String getHeroType() {
+    return Constants.ROGUE_STRING;
   }
 }
 

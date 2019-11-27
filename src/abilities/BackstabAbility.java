@@ -17,9 +17,12 @@ public class BackstabAbility extends Ability {
   }
 
   @Override
-  public final void applyDamage(final Hero hero, final float amplifier, final int round,
+  public final void applyDamage(final Hero hero, final float raceAmplifier,
+                                final float siteAmplifier, final int round,
                                 final int damageTaken, final Site site) {
-    hero.setDamageWithoutAmplifier(hero.getDamageWithoutAmplifier() + this.getCurrentDamage());
+    float amplifier = raceAmplifier * siteAmplifier;
+    hero.setDamageWithoutAmplifier(hero.getDamageWithoutAmplifier()
+            + Math.round(this.getCurrentDamage() * siteAmplifier));
     hero.setDamage(Math.round(hero.getDamage() + this.getCurrentDamage() * amplifier));
   }
 }

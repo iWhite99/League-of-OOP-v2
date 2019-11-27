@@ -18,10 +18,13 @@ public class SlamAbility extends Ability {
   }
 
   @Override
-  public final void applyDamage(final Hero hero, final float amplifier, final int round,
+  public final void applyDamage(final Hero hero, final float raceAmplifier,
+                                final float siteAmplifier, final int round,
                                 final int damageTaken, final Site site) {
     int damage = this.getCurrentDamage();
-    hero.setDamageWithoutAmplifier(hero.getDamageWithoutAmplifier() + damage);
+    float amplifier = raceAmplifier * siteAmplifier;
+    hero.setDamageWithoutAmplifier(hero.getDamageWithoutAmplifier()
+            + Math.round(this.getCurrentDamage() * siteAmplifier));
     hero.setDamage(hero.getDamage() + Math.round(damage * amplifier));
     int roundsNumber = hero.getMoves().length;
     if (round < roundsNumber - 1) {

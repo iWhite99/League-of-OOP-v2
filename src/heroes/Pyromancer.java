@@ -32,14 +32,12 @@ public class Pyromancer extends Hero {
     site.acceptSiteAmplifier(this);
     float raceAmplifier = hero.getRaceAmplifier();
     float siteAmplifier = this.getSiteAmplifier();
-    float totalAmplifier = raceAmplifier * siteAmplifier;
-    fireblast.applyDamage(hero, totalAmplifier, round,
-            Math.round(this.getDamageWithoutAmplifier() * siteAmplifier), site);
+    fireblast.applyDamage(hero, raceAmplifier, siteAmplifier, round,
+            this.getDamageWithoutAmplifier(), site);
     ignite.acceptRaceAmplifier(hero);
     raceAmplifier = hero.getRaceAmplifier();
-    totalAmplifier = raceAmplifier * siteAmplifier;
-    ignite.applyDamage(hero, totalAmplifier, round,
-            Math.round(this.getDamageWithoutAmplifier() * siteAmplifier), site);
+    ignite.applyDamage(hero, raceAmplifier, siteAmplifier, round,
+            this.getDamageWithoutAmplifier(), site);
   }
 
   @Override
@@ -106,5 +104,10 @@ public class Pyromancer extends Hero {
   public final void updateAbilities() {
     fireblast.updateAbility(this);
     ignite.updateAbility(this);
+  }
+
+  @Override
+  public String getHeroType() {
+    return Constants.PYROMANCER_STRING;
   }
 }

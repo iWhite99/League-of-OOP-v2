@@ -32,14 +32,12 @@ public class Knight extends Hero {
     site.acceptSiteAmplifier(this);
     float raceAmplifier = hero.getRaceAmplifier();
     float siteAmplifier = this.getSiteAmplifier();
-    float totalAmplifier = raceAmplifier * siteAmplifier;
-    execute.applyDamage(hero, totalAmplifier, round,
-            Math.round(this.getDamageWithoutAmplifier() * siteAmplifier), site);
+    execute.applyDamage(hero, raceAmplifier, siteAmplifier, round,
+            this.getDamageWithoutAmplifier(), site);
     slam.acceptRaceAmplifier(hero);
     raceAmplifier = hero.getRaceAmplifier();
-    totalAmplifier = raceAmplifier * siteAmplifier;
-    slam.applyDamage(hero, totalAmplifier, round,
-            Math.round(this.getDamageWithoutAmplifier() * siteAmplifier), site);
+    slam.applyDamage(hero, raceAmplifier, siteAmplifier, round,
+            this.getDamageWithoutAmplifier(), site);
   }
 
   @Override
@@ -106,5 +104,10 @@ public class Knight extends Hero {
   public final void updateAbilities() {
     this.execute.updateAbility(this);
     this.slam.updateAbility(this);
+  }
+
+  @Override
+  public String getHeroType() {
+    return Constants.KNIGHT_STRING;
   }
 }

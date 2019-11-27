@@ -16,6 +16,8 @@ public final class Main {
     GameLoader gameLoader = new GameLoader(args[0], args[1]);
     GameInput gameInput = gameLoader.load();
     Arrays.sort(gameInput.getHeroes(), new HeroComparator());
+    gameInput.run();
     Arrays.sort(gameInput.getHeroes(), new HeroIdComparator());
+    gameLoader.end(gameInput);
   }
 }

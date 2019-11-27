@@ -90,6 +90,6 @@ public abstract class Ability {
   public abstract void acceptRaceAmplifier(Hero hero);
 
   // Applied damage for each type of ability
-  public abstract void applyDamage(Hero hero, float amplifier, int round, int damageTaken,
-                                   Site site);
+  public abstract void applyDamage(Hero hero, float raceAmplifier, float siteAmplifier,
+                                   int round, int damageTaken, Site site);
 }

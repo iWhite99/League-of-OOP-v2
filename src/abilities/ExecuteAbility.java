@@ -20,19 +20,23 @@ public class ExecuteAbility extends Ability {
   }
 
   @Override
-  public final void applyDamage(final Hero hero, final float amplifier, final int round,
+  public final void applyDamage(final Hero hero, final float raceAmplifier,
+                                final float siteAmplifier, final int round,
                                 final int damageTaken, final Site site) {
+    float amplifier = raceAmplifier * siteAmplifier;
     int damage;
-    if (currentLimit * hero.getMaxHp() <= hero.getCurrentHp()) {
+    if (currentLimit * hero.getMaxHp() >= hero.getCurrentHp()) {
       damage = hero.getCurrentHp();
     } else {
       damage = this.getCurrentDamage();
     }
-    hero.setDamageWithoutAmplifier(hero.getDamageWithoutAmplifier() + damage);
     if (damage == hero.getCurrentHp()) {
       hero.setDamage(damage);
+      hero.setDamageWithoutAmplifier(hero.getDamageWithoutAmplifier() + damage);
     } else {
       hero.setDamage(hero.getDamage() + Math.round(damage * amplifier));
+      hero.setDamageWithoutAmplifier(hero.getDamageWithoutAmplifier()
+              + Math.round(damage * siteAmplifier));
     }
   }
 

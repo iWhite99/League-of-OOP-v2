@@ -68,9 +68,24 @@ public class GameLoader {
           // Set the current move
         }
       }
+      fileSystem.close();
     } catch (IOException e) {
       e.printStackTrace();
     }
     return new GameInput(siteHeight, siteWidth, siteMap, heroesNumber, heroes, roundsNumber);
+  }
+
+  public final void end(GameInput gameInput) {
+    try {
+      FileSystem fileSystem = new FileSystem(this.inputFile, this.outputFile);
+      for (Hero currentHero : gameInput.getHeroes()) {
+//        System.out.println(currentHero.toString());
+        fileSystem.writeWord(currentHero.toString());
+        fileSystem.writeWord("\n");
+      }
+      fileSystem.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }

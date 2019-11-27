@@ -168,13 +168,14 @@ public abstract class Hero {
 
   public final boolean levelUp() {
     if (this.xp >= this.levelUpXp) {
-      this.xp -= this.levelUpXp;  // Subtract the xp to level up
-      ++this.level;  // Update the level
+      ++this.level;
       this.levelUpXp = Constants.BASE_XP + this.level * Constants.LEVEL_UP_XP_AMPLIFIER;
       // Level Up Formula
       this.maxHp += this.hpIncrease;  // Update maximum hp
-      this.currentHp = this.maxHp;  // After level up, hp will be 100%
       this.updateAbilities();
+      System.out.println();
+      System.out.println(this.maxHp);
+      System.out.println();
       return true;
     }
     return false;
@@ -233,4 +234,15 @@ public abstract class Hero {
   }
 
   public abstract void updateAbilities();
+
+  public abstract String getHeroType();
+
+  @Override
+  public String toString() {
+    if (this.currentHp == 0) {
+      return this.getHeroType() + " dead";
+    }
+    return this.getHeroType() + " " + this.level + " " + this.xp + " " + this.currentHp + " "
+            + this.position.getCurrentRow() + " " + this.position.getCurrentColumn();
+  }
 }
