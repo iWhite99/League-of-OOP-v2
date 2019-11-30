@@ -7,4 +7,9 @@ public class LandSite implements Site {
   public final void acceptSiteAmplifier(final Hero hero) {
     hero.visitSiteAmplifier(this);
   }
+
+  @Override
+  public final boolean rogueBonus() {
+    return false;
+  }
 }

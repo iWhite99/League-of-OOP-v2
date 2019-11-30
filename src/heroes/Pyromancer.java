@@ -107,7 +107,7 @@ public class Pyromancer extends Hero {
   }
 
   @Override
-  public String getHeroType() {
+  public final String getHeroType() {
     return Constants.PYROMANCER_STRING;
   }
 }

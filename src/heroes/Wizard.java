@@ -116,7 +116,7 @@ public class Wizard extends Hero {
   }
 
   @Override
-  public String getHeroType() {
+  public final String getHeroType() {
     return Constants.WIZARD_STRING;
   }
 }

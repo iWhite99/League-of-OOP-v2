@@ -166,21 +166,6 @@ public abstract class Hero {
     this.moves = moves;
   }
 
-  public final boolean levelUp() {
-    if (this.xp >= this.levelUpXp) {
-      ++this.level;
-      this.levelUpXp = Constants.BASE_XP + this.level * Constants.LEVEL_UP_XP_AMPLIFIER;
-      // Level Up Formula
-      this.maxHp += this.hpIncrease;  // Update maximum hp
-      this.updateAbilities();
-      System.out.println();
-      System.out.println(this.maxHp);
-      System.out.println();
-      return true;
-    }
-    return false;
-  }
-
   /**
    * Fighting method that needs to be implemented for each type of hero.
    * @param hero represents the hero that will be attacked
@@ -233,14 +218,39 @@ public abstract class Hero {
     return 0;
   }
 
+  public final boolean levelUp() {
+    if (this.xp >= this.levelUpXp) {
+      ++this.level;
+      this.levelUpXp = Constants.BASE_XP + this.level * Constants.LEVEL_UP_XP_AMPLIFIER;
+      // Level Up Formula
+      this.maxHp += this.hpIncrease;  // Update maximum hp
+      this.updateAbilities();
+      System.out.println();
+      System.out.println(this.maxHp);
+      System.out.println();
+      return true;
+    }
+    return false;
+  }
+
   public abstract void updateAbilities();
+
+  public final void updateHero(final Hero hero) {
+    hero.currentHp = 0;
+    this.xp = this.xp + Math.max(0, Constants.MAX_XP - (this.level - hero.level)
+            * Constants.XP_AMPLIFIER);
+    while (this.levelUp()) {
+      this.setCurrentHp(this.getMaxHp());
+      // After level up, hp will be 100%
+    }
+  }
 
   public abstract String getHeroType();
 
   @Override
-  public String toString() {
+  public final String toString() {
     if (this.currentHp == 0) {
-      return this.getHeroType() + " dead";
+      return this.getHeroType() + " " + Constants.DEAD;
     }
     return this.getHeroType() + " " + this.level + " " + this.xp + " " + this.currentHp + " "
             + this.position.getCurrentRow() + " " + this.position.getCurrentColumn();

@@ -107,7 +107,7 @@ public class Knight extends Hero {
   }
 
   @Override
-  public String getHeroType() {
+  public final String getHeroType() {
     return Constants.KNIGHT_STRING;
   }
 }

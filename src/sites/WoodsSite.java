@@ -7,4 +7,9 @@ public class WoodsSite implements Site {
   public final void acceptSiteAmplifier(final Hero hero) {
     hero.visitSiteAmplifier(this);
   }
+
+  @Override
+  public final boolean rogueBonus() {
+    return true;
+  }
 }

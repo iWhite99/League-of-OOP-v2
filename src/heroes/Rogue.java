@@ -19,8 +19,6 @@ public class Rogue extends Hero {
   private BackstabAbility backstab = new BackstabAbility();
   private ParalysisAbility paralysis = new ParalysisAbility();
 
-  private int consecutiveRounds = 0;
-
   public Rogue(final int id) {
     super(id);
     this.setMaxHp(Constants.ROGUE_BASE_HP);
@@ -30,24 +28,21 @@ public class Rogue extends Hero {
 
   @Override
   public final void fight(final Hero hero, final Site site, final int round) {
-    if (consecutiveRounds == 3) {
-      consecutiveRounds = 0;
-    }
     backstab.acceptRaceAmplifier(hero);
     site.acceptSiteAmplifier(this);
     float raceAmplifier = hero.getRaceAmplifier();
     float siteAmplifier = this.getSiteAmplifier();
     backstab.applyDamage(hero, raceAmplifier, siteAmplifier, round,
             this.getDamageWithoutAmplifier(), site);
-    if (consecutiveRounds == 0 && site instanceof WoodsSite) {
-      hero.setDamageWithoutAmplifier(Math.round(hero.getDamageWithoutAmplifier() * 1.5f));
-      hero.setDamage(Math.round(hero.getDamage() * 1.5f));
+    if (round % Constants.CONSECUTIVE_ROUNDS == 0 && site.rogueBonus()) {
+      hero.setDamageWithoutAmplifier(Math.round(hero.getDamageWithoutAmplifier()
+              * Constants.CRITICAL_HIT));
+      hero.setDamage(Math.round(hero.getDamage() * Constants.CRITICAL_HIT));
     }
     paralysis.acceptRaceAmplifier(hero);
     raceAmplifier = hero.getRaceAmplifier();
     paralysis.applyDamage(hero, raceAmplifier, siteAmplifier, round,
             this.getDamageWithoutAmplifier(), site);
-    consecutiveRounds++;
   }
 
   @Override
@@ -117,7 +112,7 @@ public class Rogue extends Hero {
   }
 
   @Override
-  public String getHeroType() {
+  public final String getHeroType() {
     return Constants.ROGUE_STRING;
   }
 }

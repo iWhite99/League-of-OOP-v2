@@ -7,6 +7,7 @@ import moves.Move;
 import moves.MoveFactory;
 import sites.Site;
 import sites.SiteFactory;
+import utils.Constants;
 import utils.Position;
 
 import java.io.IOException;
@@ -75,13 +76,12 @@ public class GameLoader {
     return new GameInput(siteHeight, siteWidth, siteMap, heroesNumber, heroes, roundsNumber);
   }
 
-  public final void end(GameInput gameInput) {
+  public final void end(final GameInput gameInput) {
     try {
       FileSystem fileSystem = new FileSystem(this.inputFile, this.outputFile);
       for (Hero currentHero : gameInput.getHeroes()) {
-//        System.out.println(currentHero.toString());
         fileSystem.writeWord(currentHero.toString());
-        fileSystem.writeWord("\n");
+        fileSystem.writeWord(Constants.NEWLINE);
       }
       fileSystem.close();
     } catch (IOException e) {

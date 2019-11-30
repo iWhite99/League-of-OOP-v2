@@ -103,6 +103,15 @@ public final class Constants {
   public static final float EXECUTE_LIMIT_INCREASE = 0.01f;
   public static final float MAX_EXECUTE_LIMIT = 0.4f;
 
+  public static final int CONSECUTIVE_ROUNDS = 3;
+  public static final float CRITICAL_HIT = 1.5f;
+
+  public static final int MAX_XP = 200;
+  public static final int XP_AMPLIFIER = 40;
+
+  public static final String DEAD = "dead";
+  public static final String NEWLINE = "\n";
+
   private Constants() {
 
   }
