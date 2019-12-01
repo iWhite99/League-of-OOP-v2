@@ -19,7 +19,7 @@ public class Pyromancer extends Hero {
   private FireblastAbility fireblast = new FireblastAbility();
   private IgniteAbility ignite = new IgniteAbility();
 
-  public Pyromancer(final int id) {
+  Pyromancer(final int id) {
     super(id);
     this.setMaxHp(Constants.PYROMANCER_BASE_HP);
     this.setCurrentHp(this.getMaxHp());

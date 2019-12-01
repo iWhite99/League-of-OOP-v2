@@ -9,11 +9,6 @@ public class Position {
     this.currentColumn = currentColumn;
   }
 
-  public Position() {
-    this.currentRow = 0;
-    this.currentColumn = 0;
-  }
-
   public final int getCurrentRow() {
     return currentRow;
   }

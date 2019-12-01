@@ -13,59 +13,51 @@ public abstract class Ability {
   private int rounds = 0;
   // Initialize all with 0, set each as needed for each type of ability
 
-  public final int getInitialDamage() {
+  final int getInitialDamage() {
     return initialDamage;
   }
 
-  public final void setInitialDamage(final int initialDamage) {
+  final void setInitialDamage(final int initialDamage) {
     this.initialDamage = initialDamage;
   }
 
-  public final int getIncreaseDamage() {
-    return increaseDamage;
-  }
-
-  public final void setIncreaseDamage(final int increaseDamage) {
+  final void setIncreaseDamage(final int increaseDamage) {
     this.increaseDamage = increaseDamage;
   }
 
-  public final int getCurrentDamage() {
+  final int getCurrentDamage() {
     return currentDamage;
   }
 
-  public final void setCurrentDamage(final int currentDamage) {
+  final void setCurrentDamage(final int currentDamage) {
     this.currentDamage = currentDamage;
   }
 
-  public final int getInitialOvertimeDamage() {
+  final int getInitialOvertimeDamage() {
     return initialOvertimeDamage;
   }
 
-  public final void setInitialOvertimeDamage(final int initialOvertimeDamage) {
+  final void setInitialOvertimeDamage(final int initialOvertimeDamage) {
     this.initialOvertimeDamage = initialOvertimeDamage;
   }
 
-  public final int getIncreaseOvertimeDamage() {
-    return increaseOvertimeDamage;
-  }
-
-  public final void setIncreaseOvertimeDamage(final int increaseOvertimeDamage) {
+  final void setIncreaseOvertimeDamage(final int increaseOvertimeDamage) {
     this.increaseOvertimeDamage = increaseOvertimeDamage;
   }
 
-  public final int getCurrentOvertimeDamage() {
+  final int getCurrentOvertimeDamage() {
     return currentOvertimeDamage;
   }
 
-  public final void setCurrentOvertimeDamage(final int currentOvertimeDamage) {
+  final void setCurrentOvertimeDamage(final int currentOvertimeDamage) {
     this.currentOvertimeDamage = currentOvertimeDamage;
   }
 
-  public final int getRounds() {
+  final int getRounds() {
     return rounds;
   }
 
-  public final void setRounds(final int rounds) {
+  final void setRounds(final int rounds) {
     this.rounds = rounds;
   }
 
@@ -81,7 +73,7 @@ public abstract class Ability {
     this.updateOvertimeAbility(hero);
   }
 
-  public final void updateOvertimeAbility(final Hero hero) {
+  private void updateOvertimeAbility(final Hero hero) {
     this.currentOvertimeDamage = this.initialOvertimeDamage
             + hero.getLevel() * this.increaseOvertimeDamage;
   }

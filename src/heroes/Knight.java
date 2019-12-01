@@ -19,7 +19,7 @@ public class Knight extends Hero {
   private ExecuteAbility execute = new ExecuteAbility();
   private SlamAbility slam = new SlamAbility();
 
-  public Knight(final int id) {
+  Knight(final int id) {
     super(id);
     this.setMaxHp(Constants.KNIGHT_BASE_HP);
     this.setCurrentHp(this.getMaxHp());

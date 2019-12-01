@@ -19,7 +19,7 @@ public class Rogue extends Hero {
   private BackstabAbility backstab = new BackstabAbility();
   private ParalysisAbility paralysis = new ParalysisAbility();
 
-  public Rogue(final int id) {
+  Rogue(final int id) {
     super(id);
     this.setMaxHp(Constants.ROGUE_BASE_HP);
     this.setCurrentHp(this.getMaxHp());

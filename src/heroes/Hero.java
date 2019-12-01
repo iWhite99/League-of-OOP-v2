@@ -46,36 +46,12 @@ public abstract class Hero {
     this.id = id;
   }
 
-  public final int getId() {
+  final int getId() {
     return id;
-  }
-
-  public final void setId(final int id) {
-    this.id = id;
-  }
-
-  public final int getXp() {
-    return xp;
-  }
-
-  public final void setXp(final int xp) {
-    this.xp = xp;
-  }
-
-  public final int getLevelUpXp() {
-    return levelUpXp;
-  }
-
-  public final void setLevelUpXp(final int levelUpXp) {
-    this.levelUpXp = levelUpXp;
   }
 
   public final int getLevel() {
     return level;
-  }
-
-  public final void setLevel(final int level) {
-    this.level = level;
   }
 
   public final int getCurrentHp() {
@@ -86,11 +62,7 @@ public abstract class Hero {
     this.currentHp = currentHp;
   }
 
-  public final int getHpIncrease() {
-    return hpIncrease;
-  }
-
-  public final void setHpIncrease(final int hpIncrease) {
+  final void setHpIncrease(final int hpIncrease) {
     this.hpIncrease = hpIncrease;
   }
 
@@ -98,7 +70,7 @@ public abstract class Hero {
     return maxHp;
   }
 
-  public final void setMaxHp(final int maxHp) {
+  final void setMaxHp(final int maxHp) {
     this.maxHp = maxHp;
   }
 
@@ -166,14 +138,6 @@ public abstract class Hero {
     this.moves = moves;
   }
 
-  /**
-   * Fighting method that needs to be implemented for each type of hero.
-   * @param hero represents the hero that will be attacked
-   * @param site represents the site where the fight will take place
-   * @param round represents the round number
-   */
-  public abstract void fight(Hero hero, Site site, int round);
-
   // Race Amplifier Visitors
   public abstract void visitRaceAmplifier(ExecuteAbility executeAbility);
   public abstract void visitRaceAmplifier(SlamAbility slamAbility);
@@ -210,6 +174,8 @@ public abstract class Hero {
 
   }
 
+  public abstract void updateAbilities();
+
   /**
    * @return Coefficients needed to compare in order to keep the hero array
    *         in the order wanted in the game.
@@ -218,7 +184,7 @@ public abstract class Hero {
     return 0;
   }
 
-  public final boolean levelUp() {
+  private boolean levelUp() {
     if (this.xp >= this.levelUpXp) {
       ++this.level;
       this.levelUpXp = Constants.BASE_XP + this.level * Constants.LEVEL_UP_XP_AMPLIFIER;
@@ -233,8 +199,18 @@ public abstract class Hero {
     return false;
   }
 
-  public abstract void updateAbilities();
+  /**
+   * Fighting method that needs to be implemented for each type of hero.
+   * @param hero represents the hero that will be attacked
+   * @param site represents the site where the fight will take place
+   * @param round represents the round number
+   */
+  public abstract void fight(Hero hero, Site site, int round);
 
+  /**
+   * Method for updating the hero after killing an enemy according to the formula.
+   * @param hero represents the hero that was killed
+   */
   public final void updateHero(final Hero hero) {
     hero.currentHp = 0;
     this.xp = this.xp + Math.max(0, Constants.MAX_XP - (this.level - hero.level)
@@ -247,6 +223,9 @@ public abstract class Hero {
 
   public abstract String getHeroType();
 
+  /**
+   * @return a string that contains the stats of a hero.
+   */
   @Override
   public final String toString() {
     if (this.currentHp == 0) {

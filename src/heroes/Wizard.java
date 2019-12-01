@@ -19,7 +19,7 @@ public class Wizard extends Hero {
   private DrainAbility drain = new DrainAbility();
   private DeflectAbility deflect = new DeflectAbility();
 
-  public Wizard(final int id) {
+  Wizard(final int id) {
     super(id);
     this.setMaxHp(Constants.WIZARD_BASE_HP);
     this.setCurrentHp(this.getMaxHp());
