@@ -1,6 +1,10 @@
 package utils;
 
 public final class Constants {
+  private Constants() {
+
+  }
+
   public static final String KNIGHT_STRING = "K";
   public static final String PYROMANCER_STRING = "P";
   public static final String ROGUE_STRING = "R";
@@ -111,8 +115,4 @@ public final class Constants {
 
   public static final String DEAD = "dead";
   public static final String NEWLINE = "\n";
-
-  private Constants() {
-
-  }
 }

@@ -34,15 +34,18 @@ public final class GameInput {
     for (int i = 0; i < this.roundsNumber; i++) {
       for (Hero currentHero : this.heroes) {
         Move currentMove = currentHero.getMoves()[i];
-        currentMove.acceptMove(currentHero);
+        currentMove.acceptMove(currentHero);  // Move the player
+        // Reset the damage from the previous rounds
         currentHero.setDamage(0);
         currentHero.setDamageWithoutAmplifier(0);
         if (currentHero.getRoundsLeft() > 0) {
           if (currentHero.getCurrentHp() > 0) {
+            // Apply overtime damage
             currentHero.setCurrentHp(currentHero.getCurrentHp() - currentHero.getOvertimeDamage());
             currentHero.setRoundsLeft(currentHero.getRoundsLeft() - 1);
           }
           if (currentHero.getCurrentHp() < 0) {
+            // Set player as dead
             currentHero.setCurrentHp(0);
           }
         }
@@ -67,19 +70,21 @@ public final class GameInput {
               continue;
             }
             Site currentSite = this.siteMap[currentRow][currentColumn];
+            // Calculate and apply the damage for the heroes
             firstHero.fight(secondHero, currentSite, i);
             secondHero.fight(firstHero, currentSite, i);
             firstHero.setCurrentHp(firstHero.getCurrentHp() - firstHero.getDamage());
             secondHero.setCurrentHp(secondHero.getCurrentHp() - secondHero.getDamage());
             if (firstHero.getCurrentHp() < 0 && secondHero.getCurrentHp() < 0) {
+              // The heroes killed each other
               firstHero.setCurrentHp(0);
               secondHero.setCurrentHp(0);
             } else {
               if (firstHero.getCurrentHp() < 0) {
-                secondHero.updateHero(firstHero);
+                secondHero.updateHero(firstHero);  // Second hero killed the first hero
               }
               if (secondHero.getCurrentHp() < 0) {
-                firstHero.updateHero(secondHero);
+                firstHero.updateHero(secondHero);  // First hero killed the second hero
               }
             }
           }

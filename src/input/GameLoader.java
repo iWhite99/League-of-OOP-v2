@@ -12,7 +12,6 @@ import utils.Position;
 
 import java.io.IOException;
 
-
 public class GameLoader {
   private String inputFile;
   private String outputFile;
