@@ -8,16 +8,19 @@ import abilities.FireblastAbility;
 import abilities.IgniteAbility;
 import abilities.ParalysisAbility;
 import abilities.SlamAbility;
+import angels.Angel;
 import sites.DesertSite;
 import sites.LandSite;
 import sites.Site;
 import sites.VolcanicSite;
 import sites.WoodsSite;
+import strategies.PyromancerStrategy;
 import utils.Constants;
 
 public class Pyromancer extends Hero {
   private FireblastAbility fireblast = new FireblastAbility();
   private IgniteAbility ignite = new IgniteAbility();
+  private PyromancerStrategy pyromancerStrategy = new PyromancerStrategy();
 
   Pyromancer(final int id) {
     super(id);
@@ -31,7 +34,7 @@ public class Pyromancer extends Hero {
     fireblast.acceptRaceAmplifier(hero);
     site.acceptSiteAmplifier(this);
     float raceAmplifier = hero.getRaceAmplifier();
-    float siteAmplifier = this.getSiteAmplifier();
+    float siteAmplifier = this.getSiteAmplifier() * this.getDamageAmplifier();
     fireblast.applyDamage(hero, raceAmplifier, siteAmplifier, round,
             this.getDamageWithoutAmplifier(), site);
     ignite.acceptRaceAmplifier(hero);
@@ -109,5 +112,15 @@ public class Pyromancer extends Hero {
   @Override
   public final String getHeroType() {
     return Constants.PYROMANCER_STRING;
+  }
+
+  @Override
+  public void acceptDamageAmplifier(Angel angel) {
+    angel.visitDamageAmplifier(this);
+  }
+
+  @Override
+  public void applyStrategy() {
+    this.pyromancerStrategy.apply(this);
   }
 }

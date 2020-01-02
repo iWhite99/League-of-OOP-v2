@@ -30,5 +30,6 @@ public class SlamAbility extends Ability {
     if (round < roundsNumber - 1) {
       hero.getMoves()[round + 1] = new NoMove();
     }
+    hero.setIncapacity(1);
   }
 }

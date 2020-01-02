@@ -8,16 +8,19 @@ import abilities.FireblastAbility;
 import abilities.IgniteAbility;
 import abilities.ParalysisAbility;
 import abilities.SlamAbility;
+import angels.Angel;
 import sites.DesertSite;
 import sites.LandSite;
 import sites.Site;
 import sites.VolcanicSite;
 import sites.WoodsSite;
+import strategies.WizardStrategy;
 import utils.Constants;
 
 public class Wizard extends Hero {
   private DrainAbility drain = new DrainAbility();
   private DeflectAbility deflect = new DeflectAbility();
+  private WizardStrategy wizardStrategy = new WizardStrategy();
 
   Wizard(final int id) {
     super(id);
@@ -31,7 +34,7 @@ public class Wizard extends Hero {
     drain.acceptRaceAmplifier(hero);
     site.acceptSiteAmplifier(this);
     float raceAmplifier = hero.getRaceAmplifier();
-    float siteAmplifier = this.getSiteAmplifier();
+    float siteAmplifier = this.getSiteAmplifier() * this.getDamageAmplifier();
     drain.applyDamage(hero, raceAmplifier, siteAmplifier, round,
             this.getDamageWithoutAmplifier(), site);
     deflect.acceptRaceAmplifier(hero);
@@ -118,5 +121,15 @@ public class Wizard extends Hero {
   @Override
   public final String getHeroType() {
     return Constants.WIZARD_STRING;
+  }
+
+  @Override
+  public void acceptDamageAmplifier(Angel angel) {
+    angel.visitDamageAmplifier(this);
+  }
+
+  @Override
+  public void applyStrategy() {
+    this.wizardStrategy.apply(this);
   }
 }

@@ -40,5 +40,6 @@ public class ParalysisAbility extends Ability {
             && i - round - 1 < hero.getRoundsLeft(); i++) {
       hero.getMoves()[i] = new NoMove();
     }
+    hero.setIncapacity(1);
   }
 }

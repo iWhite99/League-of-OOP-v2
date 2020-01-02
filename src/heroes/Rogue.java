@@ -8,16 +8,19 @@ import abilities.FireblastAbility;
 import abilities.IgniteAbility;
 import abilities.ParalysisAbility;
 import abilities.SlamAbility;
+import angels.Angel;
 import sites.DesertSite;
 import sites.LandSite;
 import sites.Site;
 import sites.VolcanicSite;
 import sites.WoodsSite;
+import strategies.RogueStrategy;
 import utils.Constants;
 
 public class Rogue extends Hero {
   private BackstabAbility backstab = new BackstabAbility();
   private ParalysisAbility paralysis = new ParalysisAbility();
+  private RogueStrategy rogueStrategy = new RogueStrategy();
 
   Rogue(final int id) {
     super(id);
@@ -31,7 +34,7 @@ public class Rogue extends Hero {
     backstab.acceptRaceAmplifier(hero);
     site.acceptSiteAmplifier(this);
     float raceAmplifier = hero.getRaceAmplifier();
-    float siteAmplifier = this.getSiteAmplifier();
+    float siteAmplifier = this.getSiteAmplifier() * this.getDamageAmplifier();
     backstab.applyDamage(hero, raceAmplifier, siteAmplifier, round,
             this.getDamageWithoutAmplifier(), site);
     if (round % Constants.CONSECUTIVE_ROUNDS == 0 && site.rogueBonus()) {
@@ -114,6 +117,16 @@ public class Rogue extends Hero {
   @Override
   public final String getHeroType() {
     return Constants.ROGUE_STRING;
+  }
+
+  @Override
+  public void acceptDamageAmplifier(Angel angel) {
+    angel.visitDamageAmplifier(this);
+  }
+
+  @Override
+  public void applyStrategy() {
+    this.rogueStrategy.apply(this);
   }
 }
 

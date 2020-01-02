@@ -48,6 +48,12 @@ public final class GameInput {
             // Set player as dead
             currentHero.setCurrentHp(0);
           }
+        } else if (currentHero.getRoundsLeft() == 0) {
+          // The player has the ability to move and to apply strategies
+          currentHero.setIncapacity(0);
+        }
+        if (currentHero.getIncapacity() == 0) {
+          currentHero.applyStrategy();
         }
       }
       for (int j = 0; j < this.heroesNumber - 1; j++) {

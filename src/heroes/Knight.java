@@ -8,16 +8,19 @@ import abilities.FireblastAbility;
 import abilities.IgniteAbility;
 import abilities.ParalysisAbility;
 import abilities.SlamAbility;
+import angels.Angel;
 import sites.DesertSite;
 import sites.LandSite;
 import sites.Site;
 import sites.VolcanicSite;
 import sites.WoodsSite;
+import strategies.KnightStrategy;
 import utils.Constants;
 
 public class Knight extends Hero {
   private ExecuteAbility execute = new ExecuteAbility();
   private SlamAbility slam = new SlamAbility();
+  private KnightStrategy knightStrategy = new KnightStrategy();
 
   Knight(final int id) {
     super(id);
@@ -31,7 +34,7 @@ public class Knight extends Hero {
     execute.acceptRaceAmplifier(hero);
     site.acceptSiteAmplifier(this);
     float raceAmplifier = hero.getRaceAmplifier();
-    float siteAmplifier = this.getSiteAmplifier();
+    float siteAmplifier = this.getSiteAmplifier() * this.getDamageAmplifier();
     execute.applyDamage(hero, raceAmplifier, siteAmplifier, round,
             this.getDamageWithoutAmplifier(), site);
     slam.acceptRaceAmplifier(hero);
@@ -109,5 +112,15 @@ public class Knight extends Hero {
   @Override
   public final String getHeroType() {
     return Constants.KNIGHT_STRING;
+  }
+
+  @Override
+  public void acceptDamageAmplifier(Angel angel) {
+    angel.visitDamageAmplifier(this);
+  }
+
+  @Override
+  public void applyStrategy() {
+    this.knightStrategy.apply(this);
   }
 }

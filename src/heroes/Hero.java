@@ -8,6 +8,7 @@ import abilities.FireblastAbility;
 import abilities.IgniteAbility;
 import abilities.ParalysisAbility;
 import abilities.SlamAbility;
+import angels.Angel;
 import moves.Move;
 import moves.MoveDown;
 import moves.MoveLeft;
@@ -34,12 +35,14 @@ public abstract class Hero {
   private int hpIncrease = 0;  // Initialize with 0, set as needed for each type of hero
   private int maxHp = 0;  // Initialize hp with 0, set as needed for each type of hero
   private float siteAmplifier = 1;  // Initialize with no site amplifier
+  private float damageAmplifier = 1;  // Initialize with no damage amplifier
   private float raceAmplifier = 1;  // Initialize with no race amplifier
   private int damage = 0;  // Initialize damage with 0, set when attacked
   private int damageWithoutAmplifier = 0;  // Initialize damage with 0, set when attacked
   private int overtimeDamage = 0;  // Initialize overtime damage with 0, set when attacked
   private int roundsLeft = 0;  // Initialize rounds left for overtime damage, set when attacked
   private Position position = null;  // Store the current position on the map
+  private int incapacity = 0;  // Initialize the incapacity with 0, set when needed
   private Move[] moves = null;  // Store the moves for each hero
 
   public Hero(final int id) {
@@ -80,6 +83,14 @@ public abstract class Hero {
 
   public final void setSiteAmplifier(final float siteAmplifier) {
     this.siteAmplifier = siteAmplifier;
+  }
+
+  public float getDamageAmplifier() {
+    return damageAmplifier;
+  }
+
+  public void setDamageAmplifier(float damageAmplifier) {
+    this.damageAmplifier = damageAmplifier;
   }
 
   public final float getRaceAmplifier() {
@@ -128,6 +139,14 @@ public abstract class Hero {
 
   public final void setPosition(final Position position) {
     this.position = position;
+  }
+
+  public int getIncapacity() {
+    return incapacity;
+  }
+
+  public void setIncapacity(int incapacity) {
+    this.incapacity = incapacity;
   }
 
   public final Move[] getMoves() {
@@ -234,4 +253,8 @@ public abstract class Hero {
     return this.getHeroType() + " " + this.level + " " + this.xp + " " + this.currentHp + " "
             + this.position.getCurrentRow() + " " + this.position.getCurrentColumn();
   }
+
+  public abstract void acceptDamageAmplifier(Angel angel);
+
+  public abstract void applyStrategy();
 }
