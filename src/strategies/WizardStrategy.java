@@ -7,11 +7,11 @@ public class WizardStrategy implements Strategy {
   public void apply(Hero hero) {
     if (hero.getMaxHp() / 4 < hero.getCurrentHp()) {
       if (hero.getCurrentHp() < hero.getMaxHp() / 2) {
-        hero.setDamageAmplifier(hero.getDamageAmplifier() * 1.6f);
+        hero.setRaceAmplifier(hero.getRaceAmplifier() + 0.6f);
         hero.setCurrentHp(hero.getCurrentHp() * 9 / 10);
       }
     } else if (hero.getCurrentHp() < hero.getMaxHp() / 4) {
-      hero.setDamageAmplifier(hero.getDamageAmplifier() * 0.8f);
+      hero.setRaceAmplifier(hero.getRaceAmplifier() - 0.2f);
       hero.setCurrentHp(hero.getCurrentHp() * 6 / 5);
     }
   }

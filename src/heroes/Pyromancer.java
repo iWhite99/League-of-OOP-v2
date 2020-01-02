@@ -34,11 +34,13 @@ public class Pyromancer extends Hero {
     fireblast.acceptRaceAmplifier(hero);
     site.acceptSiteAmplifier(this);
     float raceAmplifier = hero.getRaceAmplifier();
-    float siteAmplifier = this.getSiteAmplifier() * this.getDamageAmplifier();
+    raceAmplifier += this.getDamageAmplifier();
+    float siteAmplifier = this.getSiteAmplifier();
     fireblast.applyDamage(hero, raceAmplifier, siteAmplifier, round,
             this.getDamageWithoutAmplifier(), site);
     ignite.acceptRaceAmplifier(hero);
     raceAmplifier = hero.getRaceAmplifier();
+    raceAmplifier += this.getDamageAmplifier();
     ignite.applyDamage(hero, raceAmplifier, siteAmplifier, round,
             this.getDamageWithoutAmplifier(), site);
   }
@@ -122,5 +124,10 @@ public class Pyromancer extends Hero {
   @Override
   public void applyStrategy() {
     this.pyromancerStrategy.apply(this);
+  }
+
+  @Override
+  public String heroTypeAndIndex() {
+    return "Pyromancer " + this.getId();
   }
 }

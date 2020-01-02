@@ -1,11 +1,18 @@
 package input;
 
 import angels.Angel;
+import fileio.FileSystem;
 import heroes.Hero;
+import heroes.HeroComparator;
+import heroes.HeroIdComparator;
+import magician.Magician;
 import moves.Move;
 import sites.Site;
+import utils.Constants;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public final class GameInput {
   private int siteHeight;
@@ -15,10 +22,13 @@ public final class GameInput {
   private Hero[] heroes;
   private int roundsNumber;
   private ArrayList<ArrayList<Angel>> angels;
+  private Magician magician;
+  private FileSystem fileSystem;
 
   GameInput(final int siteHeight, final int siteWidth, final Site[][] siteMap,
             final int heroesNumber, final Hero[] heroes, final int roundsNumber,
-            final ArrayList<ArrayList<Angel>> angels) {
+            final ArrayList<ArrayList<Angel>> angels, final Magician magician,
+            final FileSystem fileSystem) {
     this.siteHeight = siteHeight;
     this.siteWidth = siteWidth;
     this.siteMap = siteMap;
@@ -26,6 +36,8 @@ public final class GameInput {
     this.heroes = heroes;
     this.roundsNumber = roundsNumber;
     this.angels = angels;
+    this.magician = magician;
+    this.fileSystem = fileSystem;
   }
 
   public Hero[] getHeroes() {
@@ -38,6 +50,13 @@ public final class GameInput {
 
   public void run() {
     for (int i = 0; i < this.roundsNumber; i++) {
+      Arrays.sort(heroes, new HeroComparator());
+//      System.out.println("~~ Round " + (i + 1) + " ~~");
+      try {
+        fileSystem.writeWord("~~ Round " + (i + 1) + " ~~\n");
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
       for (Hero currentHero : this.heroes) {
         Move currentMove = currentHero.getMoves()[i];
         currentMove.acceptMove(currentHero);  // Move the player
@@ -94,15 +113,33 @@ public final class GameInput {
               secondHero.setCurrentHp(0);
             } else {
               if (firstHero.getCurrentHp() < 0) {
-                secondHero.updateHero(firstHero);  // Second hero killed the first hero
+                secondHero.updateHero(firstHero, this.magician);  // First hero was killed
+                firstHero.wasKilled(secondHero, this.magician);
               }
               if (secondHero.getCurrentHp() < 0) {
-                firstHero.updateHero(secondHero);  // First hero killed the second hero
+                firstHero.updateHero(secondHero, this.magician);  // Second hero was killed
+                secondHero.wasKilled(firstHero, this.magician);
               }
             }
           }
         }
       }
+      Arrays.sort(heroes, new HeroIdComparator());
+      for (Angel currentAngel : this.angels.get(i)) {
+        currentAngel.spawn();
+        for (Hero currentHero : this.heroes) {
+          if (currentHero.getPosition().equals(currentAngel.getPosition())) {
+            currentHero.acceptDamageAmplifier(currentAngel);
+            currentHero.setCurrentHp(Math.min(currentHero.getMaxHp(), currentHero.getCurrentHp()));
+          }
+        }
+      }
+      try {
+        fileSystem.writeWord(Constants.NEWLINE);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+//      System.out.println();
     }
   }
 }

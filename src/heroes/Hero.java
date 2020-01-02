@@ -9,6 +9,7 @@ import abilities.IgniteAbility;
 import abilities.ParalysisAbility;
 import abilities.SlamAbility;
 import angels.Angel;
+import magician.Magician;
 import moves.Move;
 import moves.MoveDown;
 import moves.MoveLeft;
@@ -26,7 +27,7 @@ import utils.Position;
 /**
  * Implemented visitor patterns to get the race amplifiers, site amplifiers and movement.
  */
-public abstract class Hero {
+public abstract class Hero extends java.util.Observable {
   private int id;  // Set for each player according to the initial order
   private int xp = 0;  // Initialize xp with 0
   private int levelUpXp = Constants.BASE_XP;  // The first level up is at 250xp
@@ -35,7 +36,7 @@ public abstract class Hero {
   private int hpIncrease = 0;  // Initialize with 0, set as needed for each type of hero
   private int maxHp = 0;  // Initialize hp with 0, set as needed for each type of hero
   private float siteAmplifier = 1;  // Initialize with no site amplifier
-  private float damageAmplifier = 1;  // Initialize with no damage amplifier
+  private float damageAmplifier = 0;  // Initialize with no damage amplifier
   private float raceAmplifier = 1;  // Initialize with no race amplifier
   private int damage = 0;  // Initialize damage with 0, set when attacked
   private int damageWithoutAmplifier = 0;  // Initialize damage with 0, set when attacked
@@ -49,7 +50,7 @@ public abstract class Hero {
     this.id = id;
   }
 
-  final int getId() {
+  public final int getId() {
     return id;
   }
 
@@ -215,9 +216,10 @@ public abstract class Hero {
     return 0;
   }
 
-  private boolean levelUp() {
+  public boolean levelUp(Magician magician) {
     if (this.xp >= this.levelUpXp) {
       ++this.level;
+      magician.update(this, this.heroTypeAndIndex() + Constants.REACHED + this.level);
       this.levelUpXp = Constants.BASE_XP + this.level * Constants.LEVEL_UP_XP_AMPLIFIER;
       // Level Up Formula
       this.maxHp += this.hpIncrease;  // Update maximum hp
@@ -239,11 +241,11 @@ public abstract class Hero {
    * Method for updating the hero after killing an enemy according to the formula.
    * @param hero represents the hero that was killed
    */
-  public final void updateHero(final Hero hero) {
+  public final void updateHero(final Hero hero, final Magician magician) {
     hero.currentHp = 0;
     this.xp = this.xp + Math.max(0, Constants.MAX_XP - (this.level - hero.level)
             * Constants.XP_AMPLIFIER);
-    while (this.levelUp()) {
+    while (this.levelUp(magician)) {
       this.setCurrentHp(this.getMaxHp());
       // After level up, hp will be 100%
     }
@@ -266,4 +268,11 @@ public abstract class Hero {
   public abstract void acceptDamageAmplifier(Angel angel);
 
   public abstract void applyStrategy();
+
+  public abstract String heroTypeAndIndex();
+
+  public final void wasKilled(Hero hero, Magician magician) {
+    magician.update(this, Constants.PLAYER + this.heroTypeAndIndex() + Constants.WAS_KILLED
+            + hero.heroTypeAndIndex());
+  }
 }

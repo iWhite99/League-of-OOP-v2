@@ -4,30 +4,51 @@ import heroes.Knight;
 import heroes.Pyromancer;
 import heroes.Rogue;
 import heroes.Wizard;
+import magician.Magician;
+import utils.Constants;
 import utils.Position;
 
 public final class TheDoomer extends Angel {
-  public TheDoomer(final Position position) {
-    super(position);
+  public TheDoomer(Position position, Magician magician) {
+    super(position, magician);
   }
 
   @Override
   public void visitDamageAmplifier(final Knight knight) {
-    knight.setCurrentHp(0);
+    if (knight.getCurrentHp() > 0) {
+      knight.setCurrentHp(0);
+      this.getMagician().update(this, Constants.THE_DOOMER_HIT + knight.heroTypeAndIndex());
+    }
   }
 
   @Override
   public void visitDamageAmplifier(final Pyromancer pyromancer) {
-    pyromancer.setCurrentHp(0);
+    if (pyromancer.getCurrentHp() > 0) {
+      pyromancer.setCurrentHp(0);
+      this.getMagician().update(this, Constants.THE_DOOMER_HIT + pyromancer.heroTypeAndIndex());
+    }
   }
 
   @Override
   public void visitDamageAmplifier(final Rogue rogue) {
-    rogue.setCurrentHp(0);
+    if (rogue.getCurrentHp() > 0) {
+      rogue.setCurrentHp(0);
+      this.getMagician().update(this, Constants.THE_DOOMER_HIT + rogue.heroTypeAndIndex());
+    }
   }
 
   @Override
   public void visitDamageAmplifier(final Wizard wizard) {
-    wizard.setCurrentHp(0);
+    if (wizard.getCurrentHp() > 0) {
+      wizard.setCurrentHp(0);
+      this.getMagician().update(this, Constants.THE_DOOMER_HIT + wizard.heroTypeAndIndex());
+    }
+  }
+
+  @Override
+  public void spawn() {
+    int row = this.getPosition().getCurrentRow();
+    int column = this.getPosition().getCurrentColumn();
+    this.getMagician().update(this, Constants.THE_DOOMER_SPAWNED + row + " " + column);
   }
 }

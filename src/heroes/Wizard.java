@@ -34,11 +34,17 @@ public class Wizard extends Hero {
     drain.acceptRaceAmplifier(hero);
     site.acceptSiteAmplifier(this);
     float raceAmplifier = hero.getRaceAmplifier();
-    float siteAmplifier = this.getSiteAmplifier() * this.getDamageAmplifier();
+    if (raceAmplifier != 0) {
+      raceAmplifier += this.getDamageAmplifier();
+    }
+    float siteAmplifier = this.getSiteAmplifier();
     drain.applyDamage(hero, raceAmplifier, siteAmplifier, round,
             this.getDamageWithoutAmplifier(), site);
     deflect.acceptRaceAmplifier(hero);
     raceAmplifier = hero.getRaceAmplifier();
+    if (raceAmplifier != 0) {
+      raceAmplifier += this.getDamageAmplifier();
+    }
     deflect.applyDamage(hero, raceAmplifier, siteAmplifier, round,
             this.getDamageWithoutAmplifier(), site);
   }
@@ -131,5 +137,10 @@ public class Wizard extends Hero {
   @Override
   public void applyStrategy() {
     this.wizardStrategy.apply(this);
+  }
+
+  @Override
+  public String heroTypeAndIndex() {
+    return "Wizard " + this.getId();
   }
 }

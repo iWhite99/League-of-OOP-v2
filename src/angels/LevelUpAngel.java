@@ -4,18 +4,23 @@ import heroes.Knight;
 import heroes.Pyromancer;
 import heroes.Rogue;
 import heroes.Wizard;
+import magician.Magician;
+import utils.Constants;
 import utils.Position;
 
 public final class LevelUpAngel extends Angel {
-  public LevelUpAngel(final Position position) {
-    super(position);
+  public LevelUpAngel(Position position, Magician magician) {
+    super(position, magician);
   }
 
   @Override
   public void visitDamageAmplifier(final Knight knight) {
     if (knight.getCurrentHp() > 0) {
       knight.setXp(knight.getLevelUpXp());
-      knight.setDamageAmplifier(knight.getDamageAmplifier() * 1.1f);
+      knight.setDamageAmplifier(knight.getDamageAmplifier()  + 0.1f);
+      this.getMagician().update(this, Constants.LEVEL_UP_ANGEL_HELPED + knight.heroTypeAndIndex());
+      knight.levelUp(this.getMagician());
+      knight.setCurrentHp(knight.getMaxHp());
     }
   }
 
@@ -23,7 +28,11 @@ public final class LevelUpAngel extends Angel {
   public void visitDamageAmplifier(final Pyromancer pyromancer) {
     if (pyromancer.getCurrentHp() > 0) {
       pyromancer.setXp(pyromancer.getLevelUpXp());
-      pyromancer.setDamageAmplifier(pyromancer.getDamageAmplifier() * 1.2f);
+      pyromancer.setDamageAmplifier(pyromancer.getDamageAmplifier() + 0.2f);
+      this.getMagician().update(this, Constants.LEVEL_UP_ANGEL_HELPED +
+              pyromancer.heroTypeAndIndex());
+      pyromancer.levelUp(this.getMagician());
+      pyromancer.setCurrentHp(pyromancer.getMaxHp());
     }
   }
 
@@ -31,7 +40,10 @@ public final class LevelUpAngel extends Angel {
   public void visitDamageAmplifier(final Rogue rogue) {
     if (rogue.getCurrentHp() > 0) {
       rogue.setXp(rogue.getLevelUpXp());
-      rogue.setDamageAmplifier(rogue.getDamageAmplifier() * 1.15f);
+      rogue.setDamageAmplifier(rogue.getDamageAmplifier() + 0.15f);
+      this.getMagician().update(this, Constants.LEVEL_UP_ANGEL_HELPED + rogue.heroTypeAndIndex());
+      rogue.levelUp(this.getMagician());
+      rogue.setCurrentHp(rogue.getMaxHp());
     }
   }
 
@@ -39,7 +51,17 @@ public final class LevelUpAngel extends Angel {
   public void visitDamageAmplifier(final Wizard wizard) {
     if (wizard.getCurrentHp() > 0) {
       wizard.setXp(wizard.getLevelUpXp());
-      wizard.setDamageAmplifier(wizard.getDamageAmplifier() * 1.25f);
+      wizard.setDamageAmplifier(wizard.getDamageAmplifier() + 0.25f);
+      this.getMagician().update(this, Constants.LEVEL_UP_ANGEL_HELPED + wizard.heroTypeAndIndex());
+      wizard.levelUp(this.getMagician());
+      wizard.setCurrentHp(wizard.getMaxHp());
     }
+  }
+
+  @Override
+  public void spawn() {
+    int row = this.getPosition().getCurrentRow();
+    int column = this.getPosition().getCurrentColumn();
+    this.getMagician().update(this, Constants.LEVEL_UP_ANGEL_SPAWNED + row + " " + column);
   }
 }

@@ -34,7 +34,8 @@ public class Rogue extends Hero {
     backstab.acceptRaceAmplifier(hero);
     site.acceptSiteAmplifier(this);
     float raceAmplifier = hero.getRaceAmplifier();
-    float siteAmplifier = this.getSiteAmplifier() * this.getDamageAmplifier();
+    raceAmplifier += this.getDamageAmplifier();
+    float siteAmplifier = this.getSiteAmplifier();
     backstab.applyDamage(hero, raceAmplifier, siteAmplifier, round,
             this.getDamageWithoutAmplifier(), site);
     if (round % Constants.CONSECUTIVE_ROUNDS == 0 && site.rogueBonus()) {
@@ -44,6 +45,7 @@ public class Rogue extends Hero {
     }
     paralysis.acceptRaceAmplifier(hero);
     raceAmplifier = hero.getRaceAmplifier();
+    raceAmplifier += this.getDamageAmplifier();
     paralysis.applyDamage(hero, raceAmplifier, siteAmplifier, round,
             this.getDamageWithoutAmplifier(), site);
   }
@@ -127,6 +129,11 @@ public class Rogue extends Hero {
   @Override
   public void applyStrategy() {
     this.rogueStrategy.apply(this);
+  }
+
+  @Override
+  public String heroTypeAndIndex() {
+    return "Rogue " + this.getId();
   }
 }
 

@@ -115,4 +115,31 @@ public final class Constants {
 
   public static final String DEAD = "dead";
   public static final String NEWLINE = "\n";
+
+  public static final String DAMAGE_ANGEL_HELPED = "DamageAngel helped ";
+  public static final String DARK_ANGEL_HIT = "DarkAngel hit ";
+  public static final String DRACULA_HIT = "Dracula hit ";
+  public static final String GOOD_BOY_HELPED = "GoodBoy helped ";
+  public static final String LEVEL_UP_ANGEL_HELPED = "LevelUpAngel helped ";
+  public static final String LIFE_GIVER_HELPED = "LifeGiver helped ";
+  public static final String SMALL_ANGEL_HELPED = "SmallAngel helped ";
+  public static final String SPAWNER_HELPED = "Spawner helped ";
+  public static final String THE_DOOMER_HIT = "TheDoomer hit ";
+  public static final String XP_ANGEL_HELPED = "XPAngel helped ";
+
+  public static final String DAMAGE_ANGEL_SPAWNED = "Angel DamageAngel was spawned at ";
+  public static final String DARK_ANGEL_SPAWNED = "Angel DarkAngel was spawned at ";
+  public static final String DRACULA_SPAWNED = "Angel Dracula was spawned at ";
+  public static final String GOOD_BOY_SPAWNED = "Angel GoodBoy was spawned at ";
+  public static final String LEVEL_UP_ANGEL_SPAWNED = "Angel LevelUpAngel was spawned at ";
+  public static final String LIFE_GIVER_SPAWNED = "Angel LifeGiver was spawned at ";
+  public static final String SMALL_ANGEL_SPAWNED = "Angel SmallAngel was spawned at ";
+  public static final String SPAWNER_SPAWNED = "Angel Spawner was spawned at ";
+  public static final String THE_DOOMER_SPAWNED = "Angel TheDoomer was spawned at ";
+  public static final String XP_ANGEL_SPAWNED = "Angel XPAngel was spawned at ";
+
+  public static final String PLAYER = "Player ";
+  public static final String RESPAWNED = " was brought to life by an angel";
+  public static final String WAS_KILLED = " was killed by ";
+  public static final String REACHED = " reached level ";
 }
