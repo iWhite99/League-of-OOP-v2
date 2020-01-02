@@ -3,10 +3,10 @@ package input;
 import fileio.FileSystem;
 import heroes.Hero;
 import heroes.HeroFactory;
+import map.Map;
 import moves.Move;
 import moves.MoveFactory;
 import sites.Site;
-import sites.SiteFactory;
 import utils.Constants;
 import utils.Position;
 
@@ -33,16 +33,11 @@ public class GameLoader {
       FileSystem fileSystem = new FileSystem(this.inputFile, this.outputFile);
       siteHeight = fileSystem.nextInt();  // Get the height of the map
       siteWidth = fileSystem.nextInt();  // Get the width of the map
-      siteMap = new Site[siteHeight][siteWidth];  // Allocate the map
-      SiteFactory siteFactory = new SiteFactory();  // Used to generate different sites
+      char[][] map = new char[siteHeight][siteWidth];
       for (int i = 0; i < siteHeight; i++) {
-        char[] currentRow = fileSystem.nextWord().toCharArray();
-        // Keep the row as a char array in order to access directly every site
-        for (int j = 0; j < siteWidth; j++) {
-          siteMap[i][j] = siteFactory.getSite(currentRow[j]);
-          // Get the wanted type of site in the actual position
-        }
+        map[i] = fileSystem.nextWord().toCharArray();
       }
+      siteMap = Map.getInstance(map).getSiteMap();
       heroesNumber = fileSystem.nextInt();  // Get the number of the heroes
       heroes = new Hero[heroesNumber];  // Allocate the heroes
       HeroFactory heroFactory = new HeroFactory();  // Used to generate different types of heroes
