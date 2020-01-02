@@ -52,7 +52,8 @@ public final class GameInput {
           // The player has the ability to move and to apply strategies
           currentHero.setIncapacity(0);
         }
-        if (currentHero.getIncapacity() == 0) {
+        if (currentHero.getIncapacity() == 0) {  // && currentHero.getCurrentHp > 0
+          // Apply the strategy if possible
           currentHero.applyStrategy();
         }
       }

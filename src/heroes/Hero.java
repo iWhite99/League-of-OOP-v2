@@ -53,6 +53,22 @@ public abstract class Hero {
     return id;
   }
 
+  public int getXp() {
+    return xp;
+  }
+
+  public void setXp(int xp) {
+    this.xp = xp;
+  }
+
+  public int getLevelUpXp() {
+    return levelUpXp;
+  }
+
+  public void setLevelUpXp(int levelUpXp) {
+    this.levelUpXp = levelUpXp;
+  }
+
   public final int getLevel() {
     return level;
   }
@@ -210,9 +226,6 @@ public abstract class Hero {
       // Level Up Formula
       this.maxHp += this.hpIncrease;  // Update maximum hp
       this.updateAbilities();
-      System.out.println();
-      System.out.println(this.maxHp);
-      System.out.println();
       return true;
     }
     return false;
