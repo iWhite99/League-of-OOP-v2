@@ -1,5 +1,7 @@
 package input;
 
+import angels.Angel;
+import angels.AngelFactory;
 import fileio.FileSystem;
 import heroes.Hero;
 import heroes.HeroFactory;
@@ -11,6 +13,7 @@ import utils.Constants;
 import utils.Position;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class GameLoader {
   private String inputFile;
@@ -28,6 +31,7 @@ public class GameLoader {
     int heroesNumber = 0;
     Hero[] heroes = null;
     int roundsNumber = 0;
+    ArrayList<ArrayList<Angel>> angels = null;
     // Initialize the values with 0 and null if an exception is thrown
     try {
       FileSystem fileSystem = new FileSystem(this.inputFile, this.outputFile);
@@ -63,11 +67,28 @@ public class GameLoader {
           // Set the current move
         }
       }
+      AngelFactory angelFactory = new AngelFactory();
+      angels = new ArrayList<>();
+      for (int i = 0; i < roundsNumber; i++) {
+        ArrayList<Angel> roundAngels = new ArrayList<>();
+        int currentRoundAngels = fileSystem.nextInt();
+        for (int j = 0; j < currentRoundAngels; j++) {
+          String currentAngel = fileSystem.nextWord();
+          String[] info = currentAngel.split(",");
+          String angelType = info[0];
+          int row = Integer.parseInt(info[1]);
+          int column = Integer.parseInt(info[2]);
+          Position position = new Position(row, column);
+          roundAngels.add(angelFactory.getAngel(angelType, position));
+        }
+        angels.add(roundAngels);
+      }
       fileSystem.close();
     } catch (IOException e) {
       e.printStackTrace();
     }
-    return new GameInput(siteHeight, siteWidth, siteMap, heroesNumber, heroes, roundsNumber);
+    return new GameInput(siteHeight, siteWidth, siteMap, heroesNumber, heroes, roundsNumber,
+            angels);
   }
 
   public final void end(final GameInput gameInput) {

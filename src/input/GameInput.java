@@ -1,8 +1,11 @@
 package input;
 
+import angels.Angel;
 import heroes.Hero;
 import moves.Move;
 import sites.Site;
+
+import java.util.ArrayList;
 
 public final class GameInput {
   private int siteHeight;
@@ -11,15 +14,18 @@ public final class GameInput {
   private int heroesNumber;
   private Hero[] heroes;
   private int roundsNumber;
+  private ArrayList<ArrayList<Angel>> angels;
 
   GameInput(final int siteHeight, final int siteWidth, final Site[][] siteMap,
-            final int heroesNumber, final Hero[] heroes, final int roundsNumber) {
+            final int heroesNumber, final Hero[] heroes, final int roundsNumber,
+            final ArrayList<ArrayList<Angel>> angels) {
     this.siteHeight = siteHeight;
     this.siteWidth = siteWidth;
     this.siteMap = siteMap;
     this.heroesNumber = heroesNumber;
     this.heroes = heroes;
     this.roundsNumber = roundsNumber;
+    this.angels = angels;
   }
 
   public Hero[] getHeroes() {

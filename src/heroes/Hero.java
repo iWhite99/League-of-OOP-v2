@@ -65,10 +65,6 @@ public abstract class Hero {
     return levelUpXp;
   }
 
-  public void setLevelUpXp(int levelUpXp) {
-    this.levelUpXp = levelUpXp;
-  }
-
   public final int getLevel() {
     return level;
   }
