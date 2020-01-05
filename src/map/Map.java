@@ -3,6 +3,9 @@ package map;
 import sites.Site;
 import sites.SiteFactory;
 
+/**
+ * Implemented Singleton class to get the map of the game.
+ */
 public final class Map {
   private Site[][] siteMap;
 

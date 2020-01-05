@@ -4,6 +4,12 @@ import magician.Magician;
 import utils.Position;
 
 public final class AngelFactory {
+  /**
+   * @param angelType represents the type of the Angel that will be returned
+   * @param position represents the position of the Angel on the map
+   * @param magician represents the Observer where the information will be reported
+   * @return an Angel of the wanted type or null if the type is not implemented
+   */
   public Angel getAngel(final String angelType, final Position position, final Magician magician) {
     switch (angelType) {
       case "DamageAngel":
