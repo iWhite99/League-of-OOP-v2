@@ -9,7 +9,7 @@ import utils.Constants;
 import utils.Position;
 
 public final class TheDoomer extends Angel {
-  public TheDoomer(Position position, Magician magician) {
+  public TheDoomer(final Position position, final Magician magician) {
     super(position, magician);
   }
 
@@ -18,6 +18,8 @@ public final class TheDoomer extends Angel {
     if (knight.getCurrentHp() > 0) {
       knight.setCurrentHp(0);
       this.getMagician().update(this, Constants.THE_DOOMER_HIT + knight.heroTypeAndIndex());
+      this.getMagician().update(this, Constants.PLAYER + knight.heroTypeAndIndex()
+              + Constants.WAS_KILLED + Constants.ANGEL);
     }
   }
 
@@ -26,6 +28,8 @@ public final class TheDoomer extends Angel {
     if (pyromancer.getCurrentHp() > 0) {
       pyromancer.setCurrentHp(0);
       this.getMagician().update(this, Constants.THE_DOOMER_HIT + pyromancer.heroTypeAndIndex());
+      this.getMagician().update(this, Constants.PLAYER + pyromancer.heroTypeAndIndex()
+              + Constants.WAS_KILLED + Constants.ANGEL);
     }
   }
 
@@ -34,6 +38,8 @@ public final class TheDoomer extends Angel {
     if (rogue.getCurrentHp() > 0) {
       rogue.setCurrentHp(0);
       this.getMagician().update(this, Constants.THE_DOOMER_HIT + rogue.heroTypeAndIndex());
+      this.getMagician().update(this, Constants.PLAYER + rogue.heroTypeAndIndex()
+              + Constants.WAS_KILLED + Constants.ANGEL);
     }
   }
 
@@ -42,6 +48,8 @@ public final class TheDoomer extends Angel {
     if (wizard.getCurrentHp() > 0) {
       wizard.setCurrentHp(0);
       this.getMagician().update(this, Constants.THE_DOOMER_HIT + wizard.heroTypeAndIndex());
+      this.getMagician().update(this, Constants.PLAYER + wizard.heroTypeAndIndex()
+              + Constants.WAS_KILLED + Constants.ANGEL);
     }
   }
 

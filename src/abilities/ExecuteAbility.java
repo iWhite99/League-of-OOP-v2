@@ -34,7 +34,9 @@ public class ExecuteAbility extends Ability {
       hero.setDamage(damage);
       hero.setDamageWithoutAmplifier(hero.getDamageWithoutAmplifier() + damage);
     } else {
-      hero.setDamage(hero.getDamage() + Math.round(damage * amplifier));
+      int damageWithSiteAmplifier = Math.round(damage * siteAmplifier);
+      hero.setDamage(hero.getDamage() + Math.round(damageWithSiteAmplifier * raceAmplifier));
+//      hero.setDamage(hero.getDamage() + Math.round(damage * amplifier));
       hero.setDamageWithoutAmplifier(hero.getDamageWithoutAmplifier()
               + Math.round(damage * siteAmplifier));
     }

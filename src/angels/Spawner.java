@@ -9,16 +9,15 @@ import utils.Constants;
 import utils.Position;
 
 public final class Spawner extends Angel {
-  public Spawner(Position position, Magician magician) {
+  public Spawner(final Position position, final Magician magician) {
     super(position, magician);
   }
 
   @Override
   public void visitDamageAmplifier(final Knight knight) {
     if (knight.getCurrentHp() == 0) {
-      knight.setCurrentHp(200);
+      knight.setCurrentHp(Constants.SPAWNER_KNIGHT);
       this.getMagician().update(this, Constants.SPAWNER_HELPED + knight.heroTypeAndIndex());
-      this.getMagician().update(this, Constants.PLAYER);
       this.getMagician().update(this, Constants.PLAYER + knight.heroTypeAndIndex()
               + Constants.RESPAWNED);
     }
@@ -27,7 +26,7 @@ public final class Spawner extends Angel {
   @Override
   public void visitDamageAmplifier(final Pyromancer pyromancer) {
     if (pyromancer.getCurrentHp() == 0) {
-      pyromancer.setCurrentHp(150);
+      pyromancer.setCurrentHp(Constants.SPAWNER_PYROMANCER);
       this.getMagician().update(this, Constants.SPAWNER_HELPED + pyromancer.heroTypeAndIndex());
       this.getMagician().update(this, Constants.PLAYER + pyromancer.heroTypeAndIndex()
               + Constants.RESPAWNED);
@@ -37,7 +36,7 @@ public final class Spawner extends Angel {
   @Override
   public void visitDamageAmplifier(final Rogue rogue) {
     if (rogue.getCurrentHp() == 0) {
-      rogue.setCurrentHp(180);
+      rogue.setCurrentHp(Constants.SPAWNER_ROGUE);
       this.getMagician().update(this, Constants.SPAWNER_HELPED + rogue.heroTypeAndIndex());
       this.getMagician().update(this, Constants.PLAYER + rogue.heroTypeAndIndex()
               + Constants.RESPAWNED);
@@ -47,7 +46,7 @@ public final class Spawner extends Angel {
   @Override
   public void visitDamageAmplifier(final Wizard wizard) {
     if (wizard.getCurrentHp() == 0) {
-      wizard.setCurrentHp(120);
+      wizard.setCurrentHp(Constants.SPAWNER_WIZARD);
       this.getMagician().update(this, Constants.SPAWNER_HELPED + wizard.heroTypeAndIndex());
       this.getMagician().update(this, Constants.PLAYER + wizard.heroTypeAndIndex()
               + Constants.RESPAWNED);

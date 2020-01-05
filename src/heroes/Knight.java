@@ -38,11 +38,14 @@ public class Knight extends Hero {
     float siteAmplifier = this.getSiteAmplifier();
     execute.applyDamage(hero, raceAmplifier, siteAmplifier, round,
             this.getDamageWithoutAmplifier(), site);
+//    System.out.println("KNIGHT");
+//    System.out.println(hero.getDamage());
     slam.acceptRaceAmplifier(hero);
     raceAmplifier = hero.getRaceAmplifier();
     raceAmplifier += this.getDamageAmplifier();
     slam.applyDamage(hero, raceAmplifier, siteAmplifier, round,
             this.getDamageWithoutAmplifier(), site);
+//    System.out.println(hero.getDamage());
   }
 
   @Override
@@ -117,17 +120,17 @@ public class Knight extends Hero {
   }
 
   @Override
-  public void acceptDamageAmplifier(Angel angel) {
+  public final void acceptDamageAmplifier(final Angel angel) {
     angel.visitDamageAmplifier(this);
   }
 
   @Override
-  public void applyStrategy() {
+  public final void applyStrategy() {
     this.knightStrategy.apply(this);
   }
 
   @Override
-  public String heroTypeAndIndex() {
+  public final String heroTypeAndIndex() {
     return "Knight " + this.getId();
   }
 }

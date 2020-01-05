@@ -91,8 +91,8 @@ public class GameLoader {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    return new GameInput(siteHeight, siteWidth, siteMap, heroesNumber, heroes, roundsNumber,
-            angels, magician, this.fileSystem);
+    return new GameInput(siteMap, heroesNumber, heroes, roundsNumber, angels, magician,
+            this.fileSystem);
   }
 
   public final void end(final GameInput gameInput) {

@@ -20,9 +20,15 @@ public class BackstabAbility extends Ability {
   public final void applyDamage(final Hero hero, final float raceAmplifier,
                                 final float siteAmplifier, final int round,
                                 final int damageTaken, final Site site) {
+//    System.out.println("BACKSTAB");
     float amplifier = raceAmplifier * siteAmplifier;
+//    System.out.println(raceAmplifier + " " + siteAmplifier);
+//    System.out.println(this.getCurrentDamage());
+
     hero.setDamageWithoutAmplifier(hero.getDamageWithoutAmplifier()
             + Math.round(this.getCurrentDamage() * siteAmplifier));
-    hero.setDamage(Math.round(hero.getDamage() + this.getCurrentDamage() * amplifier));
+    int damage = Math.round(this.getCurrentDamage() * siteAmplifier);
+    hero.setDamage(hero.getDamage() + Math.round(damage * raceAmplifier));
+//    hero.setDamage(Math.round(hero.getDamage() + this.getCurrentDamage() * amplifier));
   }
 }

@@ -1,18 +1,19 @@
 package strategies;
 
 import heroes.Hero;
+import utils.Constants;
 
-public class PyromancerStrategy implements Strategy {
+public final class PyromancerStrategy implements Strategy {
   @Override
-  public void apply(Hero hero) {
-    if (hero.getMaxHp() / 4 < hero.getCurrentHp()) {
-      if (hero.getCurrentHp() < hero.getMaxHp() / 3) {
-        hero.setRaceAmplifier(hero.getRaceAmplifier() + 0.7f);
-        hero.setCurrentHp(hero.getCurrentHp() * 3 / 4);
+  public void apply(final Hero hero) {
+    if (hero.getCurrentHp() < hero.getMaxHp() / Constants.FOUR) {
+      hero.setDamageAmplifier(hero.getDamageAmplifier() - Constants.PYROMANCER_STRATEGY_LOW);
+      hero.setCurrentHp(hero.getCurrentHp() * Constants.FOUR / Constants.THREE);
+    } else if (hero.getMaxHp() / Constants.FOUR < hero.getCurrentHp()) {
+      if (hero.getCurrentHp() < hero.getMaxHp() / Constants.THREE) {
+        hero.setDamageAmplifier(hero.getDamageAmplifier() + Constants.PYROMANCER_STRATEGY_MEDIUM);
+        hero.setCurrentHp(hero.getCurrentHp() * Constants.THREE / Constants.FOUR);
       }
-    } else if (hero.getCurrentHp() < hero.getMaxHp() / 4) {
-      hero.setRaceAmplifier(hero.getRaceAmplifier() - 0.3f);
-      hero.setCurrentHp(hero.getCurrentHp() * 4 / 3);
     }
   }
 }

@@ -23,6 +23,9 @@ public class FireblastAbility extends Ability {
     float amplifier = raceAmplifier * siteAmplifier;
     hero.setDamageWithoutAmplifier(hero.getDamageWithoutAmplifier()
             + Math.round(this.getCurrentDamage() * siteAmplifier));
-    hero.setDamage(Math.round(hero.getDamage() + this.getCurrentDamage() * amplifier));
+    int damage = Math.round(this.getCurrentDamage() * siteAmplifier);
+//    System.out.println(damage);
+    hero.setDamage(hero.getDamage() + Math.round(damage * raceAmplifier));
+//    hero.setDamage(Math.round(hero.getDamage() + this.getCurrentDamage() * amplifier));
   }
 }

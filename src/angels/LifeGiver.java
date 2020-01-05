@@ -9,14 +9,14 @@ import utils.Constants;
 import utils.Position;
 
 public final class LifeGiver extends Angel {
-  public LifeGiver(Position position, Magician magician) {
+  public LifeGiver(final Position position, final Magician magician) {
     super(position, magician);
   }
 
   @Override
   public void visitDamageAmplifier(final Knight knight) {
     if (knight.getCurrentHp() > 0) {
-      knight.setCurrentHp(knight.getCurrentHp() + 100);
+      knight.setCurrentHp(knight.getCurrentHp() + Constants.LIFE_GIVER_KNIGHT);
       this.getMagician().update(this, Constants.LIFE_GIVER_HELPED + knight.heroTypeAndIndex());
     }
   }
@@ -24,7 +24,7 @@ public final class LifeGiver extends Angel {
   @Override
   public void visitDamageAmplifier(final Pyromancer pyromancer) {
     if (pyromancer.getCurrentHp() > 0) {
-      pyromancer.setCurrentHp(pyromancer.getCurrentHp() + 80);
+      pyromancer.setCurrentHp(pyromancer.getCurrentHp() + Constants.LIFE_GIVER_PYROMANCER);
       this.getMagician().update(this, Constants.LIFE_GIVER_HELPED + pyromancer.heroTypeAndIndex());
     }
   }
@@ -32,7 +32,7 @@ public final class LifeGiver extends Angel {
   @Override
   public void visitDamageAmplifier(final Rogue rogue) {
     if (rogue.getCurrentHp() > 0) {
-      rogue.setCurrentHp(rogue.getCurrentHp() + 90);
+      rogue.setCurrentHp(rogue.getCurrentHp() + Constants.LIFE_GIVER_ROGUE);
       this.getMagician().update(this, Constants.LIFE_GIVER_HELPED + rogue.heroTypeAndIndex());
     }
   }
@@ -40,7 +40,7 @@ public final class LifeGiver extends Angel {
   @Override
   public void visitDamageAmplifier(final Wizard wizard) {
     if (wizard.getCurrentHp() > 0) {
-      wizard.setCurrentHp(wizard.getCurrentHp() + 120);
+      wizard.setCurrentHp(wizard.getCurrentHp() + Constants.LIFE_GIVER_WIZARD);
       this.getMagician().update(this, Constants.LIFE_GIVER_HELPED + wizard.heroTypeAndIndex());
     }
   }

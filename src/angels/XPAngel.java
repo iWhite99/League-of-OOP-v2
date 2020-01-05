@@ -9,39 +9,51 @@ import utils.Constants;
 import utils.Position;
 
 public final class XPAngel extends Angel {
-  public XPAngel(Position position, Magician magician) {
+  public XPAngel(final Position position, final Magician magician) {
     super(position, magician);
   }
 
   @Override
   public void visitDamageAmplifier(final Knight knight) {
     if (knight.getCurrentHp() > 0) {
-      knight.setXp(knight.getXp() + 45);
+      knight.setXp(knight.getXp() + Constants.XP_ANGEL_KNIGHT);
       this.getMagician().update(this, Constants.XP_ANGEL_HELPED + knight.heroTypeAndIndex());
+      if (knight.levelUp(this.getMagician())) {
+        knight.setCurrentHp(knight.getMaxHp());
+      }
     }
   }
 
   @Override
   public void visitDamageAmplifier(final Pyromancer pyromancer) {
     if (pyromancer.getCurrentHp() > 0) {
-      pyromancer.setXp(pyromancer.getXp() + 50);
+      pyromancer.setXp(pyromancer.getXp() + Constants.XP_ANGEL_PYROMANCER);
       this.getMagician().update(this, Constants.XP_ANGEL_HELPED + pyromancer.heroTypeAndIndex());
+      if (pyromancer.levelUp(this.getMagician())) {
+        pyromancer.setCurrentHp(pyromancer.getMaxHp());
+      }
     }
   }
 
   @Override
   public void visitDamageAmplifier(final Rogue rogue) {
     if (rogue.getCurrentHp() > 0) {
-      rogue.setXp(rogue.getXp() + 40);
+      rogue.setXp(rogue.getXp() + Constants.XP_ANGEL_ROGUE);
       this.getMagician().update(this, Constants.XP_ANGEL_HELPED + rogue.heroTypeAndIndex());
+      if (rogue.levelUp(this.getMagician())) {
+        rogue.setCurrentHp(rogue.getMaxHp());
+      }
     }
   }
 
   @Override
   public void visitDamageAmplifier(final Wizard wizard) {
     if (wizard.getCurrentHp() > 0) {
-      wizard.setXp(wizard.getXp() + 60);
+      wizard.setXp(wizard.getXp() + Constants.XP_ANGEL_WIZARD);
       this.getMagician().update(this, Constants.XP_ANGEL_HELPED + wizard.heroTypeAndIndex());
+      if (wizard.levelUp(this.getMagician())) {
+        wizard.setCurrentHp(wizard.getMaxHp());
+      }
     }
   }
 

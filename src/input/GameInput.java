@@ -25,13 +25,12 @@ public final class GameInput {
   private Magician magician;
   private FileSystem fileSystem;
 
-  GameInput(final int siteHeight, final int siteWidth, final Site[][] siteMap,
-            final int heroesNumber, final Hero[] heroes, final int roundsNumber,
-            final ArrayList<ArrayList<Angel>> angels, final Magician magician,
-            final FileSystem fileSystem) {
-    this.siteHeight = siteHeight;
-    this.siteWidth = siteWidth;
+  GameInput(final Site[][] siteMap, final int heroesNumber, final Hero[] heroes,
+            final int roundsNumber, final ArrayList<ArrayList<Angel>> angels,
+            final Magician magician, final FileSystem fileSystem) {
     this.siteMap = siteMap;
+    this.siteHeight = siteMap.length;
+    this.siteWidth = siteMap[0].length;
     this.heroesNumber = heroesNumber;
     this.heroes = heroes;
     this.roundsNumber = roundsNumber;
@@ -78,8 +77,10 @@ public final class GameInput {
           currentHero.setIncapacity(0);
         }
         if (currentHero.getIncapacity() == 0) {  // && currentHero.getCurrentHp > 0
+//          System.out.println(currentHero.heroTypeAndIndex() + currentHero.getIncapacity());
           // Apply the strategy if possible
           currentHero.applyStrategy();
+//          System.out.println(currentHero.getDamageAmplifier());
         }
       }
       for (int j = 0; j < this.heroesNumber - 1; j++) {
@@ -109,22 +110,29 @@ public final class GameInput {
             secondHero.setCurrentHp(secondHero.getCurrentHp() - secondHero.getDamage());
             if (firstHero.getCurrentHp() < 0 && secondHero.getCurrentHp() < 0) {
               // The heroes killed each other
-              firstHero.setCurrentHp(0);
+              secondHero.wasKilled(firstHero, this.magician);
+              firstHero.wasKilled(secondHero, this.magician);
               secondHero.setCurrentHp(0);
+              firstHero.setCurrentHp(0);
             } else {
               if (firstHero.getCurrentHp() < 0) {
-                secondHero.updateHero(firstHero, this.magician);  // First hero was killed
-                firstHero.wasKilled(secondHero, this.magician);
+                firstHero.wasKilled(secondHero, this.magician);  // First hero was killed
+                secondHero.updateHero(firstHero, this.magician);
               }
               if (secondHero.getCurrentHp() < 0) {
-                firstHero.updateHero(secondHero, this.magician);  // Second hero was killed
-                secondHero.wasKilled(firstHero, this.magician);
+                secondHero.wasKilled(firstHero, this.magician);  // Second hero was killed
+                firstHero.updateHero(secondHero, this.magician);
               }
             }
           }
         }
       }
       Arrays.sort(heroes, new HeroIdComparator());
+      System.out.println("dupa lupte");
+      for (Hero currentHero : this.heroes) {
+        System.out.println(currentHero.toString());
+      }
+      System.out.println();
       for (Angel currentAngel : this.angels.get(i)) {
         currentAngel.spawn();
         for (Hero currentHero : this.heroes) {
@@ -134,6 +142,17 @@ public final class GameInput {
           }
         }
       }
+//      System.out.println("ROUND " + i);
+//      for (Hero currentHero : this.heroes) {
+////        currentHero.applyStrategy();
+//        System.out.println(currentHero.toString());
+//      }
+//      System.out.println();
+      System.out.println("dupa ingeri");
+      for (Hero currentHero : this.heroes) {
+        System.out.println(currentHero.toString());
+      }
+      System.out.println();
       try {
         fileSystem.writeWord(Constants.NEWLINE);
       } catch (IOException e) {

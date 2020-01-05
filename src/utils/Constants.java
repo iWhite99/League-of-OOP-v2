@@ -141,5 +141,88 @@ public final class Constants {
   public static final String PLAYER = "Player ";
   public static final String RESPAWNED = " was brought to life by an angel";
   public static final String WAS_KILLED = " was killed by ";
+  public static final String ANGEL = "an angel";
   public static final String REACHED = " reached level ";
+
+  public static final float DAMAGE_ANGEL_KNIGHT = 0.15f;
+  public static final float DAMAGE_ANGEL_PYROMANCER = 0.2f;
+  public static final float DAMAGE_ANGEL_ROGUE = 0.3f;
+  public static final float DAMAGE_ANGEL_WIZARD = 0.4f;
+
+  public static final int DARK_ANGEL_KNIGHT = 40;
+  public static final int DARK_ANGEL_PYROMANCER = 30;
+  public static final int DARK_ANGEL_ROGUE = 10;
+  public static final int DARK_ANGEL_WIZARD = 20;
+
+  public static final float DRACULA_KNIGHT = 0.2f;
+  public static final float DRACULA_PYROMANCER = 0.3f;
+  public static final float DRACULA_ROGUE = 0.1f;
+  public static final float DRACULA_WIZARD = 0.4f;
+
+  public static final int DRACULA_KNIGHT_HP = 60;
+  public static final int DRACULA_PYROMANCER_HP = 40;
+  public static final int DRACULA_ROGUE_HP = 35;
+  public static final int DRACULA_WIZARD_HP = 20;
+
+  public static final float GOOD_BOY_KNIGHT = 0.4f;
+  public static final float GOOD_BOY_PYROMANCER = 0.5f;
+  public static final float GOOD_BOY_ROGUE = 0.4f;
+  public static final float GOOD_BOY_WIZARD = 0.3f;
+
+  public static final int GOOD_BOY_KNIGHT_HP = 20;
+  public static final int GOOD_BOY_PYROMANCER_HP = 30;
+  public static final int GOOD_BOY_ROGUE_HP = 40;
+  public static final int GOOD_BOY_WIZARD_HP = 50;
+
+  public static final float LEVEL_UP_ANGEL_KNIGHT = 0.1f;
+  public static final float LEVEL_UP_ANGEL_PYROMANCER = 0.2f;
+  public static final float LEVEL_UP_ANGEL_ROGUE = 0.15f;
+  public static final float LEVEL_UP_ANGEL_WIZARD = 0.25f;
+
+  public static final int LIFE_GIVER_KNIGHT = 100;
+  public static final int LIFE_GIVER_PYROMANCER = 80;
+  public static final int LIFE_GIVER_ROGUE = 90;
+  public static final int LIFE_GIVER_WIZARD = 120;
+
+  public static final float SMALL_ANGEL_KNIGHT = 0.1f;
+  public static final float SMALL_ANGEL_PYROMANCER = 0.15f;
+  public static final float SMALL_ANGEL_ROGUE = 0.05f;
+  public static final float SMALL_ANGEL_WIZARD = 0.1f;
+
+  public static final int SMALL_ANGEL_KNIGHT_HP = 10;
+  public static final int SMALL_ANGEL_PYROMANCER_HP = 15;
+  public static final int SMALL_ANGEL_ROGUE_HP = 20;
+  public static final int SMALL_ANGEL_WIZARD_HP = 25;
+
+  public static final int SPAWNER_KNIGHT = 200;
+  public static final int SPAWNER_PYROMANCER = 150;
+  public static final int SPAWNER_ROGUE = 180;
+  public static final int SPAWNER_WIZARD = 120;
+
+  public static final int XP_ANGEL_KNIGHT = 45;
+  public static final int XP_ANGEL_PYROMANCER = 50;
+  public static final int XP_ANGEL_ROGUE = 40;
+  public static final int XP_ANGEL_WIZARD = 60;
+
+  public static final float KNIGHT_STRATEGY_MEDIUM = 0.5f;
+  public static final float KNIGHT_STRATEGY_LOW = 0.2f;
+
+  public static final float PYROMANCER_STRATEGY_MEDIUM = 0.7f;
+  public static final float PYROMANCER_STRATEGY_LOW = 0.3f;
+
+  public static final float ROGUE_STRATEGY_MEDIUM = 0.4f;
+  public static final float ROGUE_STRATEGY_LOW = 0.1f;
+
+  public static final float WIZARD_STRATEGY_MEDIUM = 0.6f;
+  public static final float WIZARD_STRATEGY_LOW = 0.2f;
+
+  public static final int TWO = 2;
+  public static final int THREE = 3;
+  public static final int FOUR = 4;
+  public static final int FIVE = 5;
+  public static final int SIX = 6;
+  public static final int SEVEN = 7;
+  public static final int EIGHT = 8;
+  public static final int NINE = 9;
+  public static final int TEN = 10;
 }

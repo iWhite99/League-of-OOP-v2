@@ -3,7 +3,7 @@ package angels;
 import magician.Magician;
 import utils.Position;
 
-public class AngelFactory {
+public final class AngelFactory {
   public Angel getAngel(final String angelType, final Position position, final Magician magician) {
     switch (angelType) {
       case "DamageAngel":

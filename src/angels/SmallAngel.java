@@ -9,15 +9,15 @@ import utils.Constants;
 import utils.Position;
 
 public final class SmallAngel extends Angel {
-  public SmallAngel(Position position, Magician magician) {
+  public SmallAngel(final Position position, final Magician magician) {
     super(position, magician);
   }
 
   @Override
   public void visitDamageAmplifier(final Knight knight) {
     if (knight.getCurrentHp() > 0) {
-      knight.setDamageAmplifier(knight.getDamageAmplifier() + 0.1f);
-      knight.setCurrentHp(knight.getCurrentHp() + 10);
+      knight.setDamageAmplifier(knight.getDamageAmplifier() + Constants.SMALL_ANGEL_KNIGHT);
+      knight.setCurrentHp(knight.getCurrentHp() + Constants.SMALL_ANGEL_KNIGHT_HP);
       this.getMagician().update(this, Constants.SMALL_ANGEL_HELPED + knight.heroTypeAndIndex());
     }
   }
@@ -25,8 +25,9 @@ public final class SmallAngel extends Angel {
   @Override
   public void visitDamageAmplifier(final Pyromancer pyromancer) {
     if (pyromancer.getCurrentHp() > 0) {
-      pyromancer.setDamageAmplifier(pyromancer.getDamageAmplifier() + 0.15f);
-      pyromancer.setCurrentHp(pyromancer.getCurrentHp() + 15);
+      pyromancer.setDamageAmplifier(pyromancer.getDamageAmplifier()
+              + Constants.SMALL_ANGEL_PYROMANCER);
+      pyromancer.setCurrentHp(pyromancer.getCurrentHp() + Constants.SMALL_ANGEL_PYROMANCER_HP);
       this.getMagician().update(this, Constants.SMALL_ANGEL_HELPED + pyromancer.heroTypeAndIndex());
     }
   }
@@ -34,8 +35,8 @@ public final class SmallAngel extends Angel {
   @Override
   public void visitDamageAmplifier(final Rogue rogue) {
     if (rogue.getCurrentHp() > 0) {
-      rogue.setDamageAmplifier(rogue.getDamageAmplifier() + 0.05f);
-      rogue.setCurrentHp(rogue.getCurrentHp() + 20);
+      rogue.setDamageAmplifier(rogue.getDamageAmplifier() + Constants.SMALL_ANGEL_ROGUE);
+      rogue.setCurrentHp(rogue.getCurrentHp() + Constants.SMALL_ANGEL_ROGUE_HP);
       this.getMagician().update(this, Constants.SMALL_ANGEL_HELPED + rogue.heroTypeAndIndex());
     }
   }
@@ -43,8 +44,8 @@ public final class SmallAngel extends Angel {
   @Override
   public void visitDamageAmplifier(final Wizard wizard) {
     if (wizard.getCurrentHp() > 0) {
-      wizard.setDamageAmplifier(wizard.getDamageAmplifier() + 0.1f);
-      wizard.setCurrentHp(wizard.getCurrentHp() + 25);
+      wizard.setDamageAmplifier(wizard.getDamageAmplifier() + Constants.SMALL_ANGEL_WIZARD);
+      wizard.setCurrentHp(wizard.getCurrentHp() + Constants.SMALL_ANGEL_WIZARD_HP);
       this.getMagician().update(this, Constants.SMALL_ANGEL_HELPED + wizard.heroTypeAndIndex());
     }
   }

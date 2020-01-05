@@ -38,11 +38,14 @@ public class Pyromancer extends Hero {
     float siteAmplifier = this.getSiteAmplifier();
     fireblast.applyDamage(hero, raceAmplifier, siteAmplifier, round,
             this.getDamageWithoutAmplifier(), site);
+//    System.out.println("PYROMANCER");
+//    System.out.println(hero.getDamage());
     ignite.acceptRaceAmplifier(hero);
     raceAmplifier = hero.getRaceAmplifier();
     raceAmplifier += this.getDamageAmplifier();
     ignite.applyDamage(hero, raceAmplifier, siteAmplifier, round,
             this.getDamageWithoutAmplifier(), site);
+//    System.out.println(hero.getDamage());
   }
 
   @Override
@@ -117,17 +120,17 @@ public class Pyromancer extends Hero {
   }
 
   @Override
-  public void acceptDamageAmplifier(Angel angel) {
+  public final void acceptDamageAmplifier(final Angel angel) {
     angel.visitDamageAmplifier(this);
   }
 
   @Override
-  public void applyStrategy() {
+  public final void applyStrategy() {
     this.pyromancerStrategy.apply(this);
   }
 
   @Override
-  public String heroTypeAndIndex() {
+  public final String heroTypeAndIndex() {
     return "Pyromancer " + this.getId();
   }
 }

@@ -122,17 +122,17 @@ public class Rogue extends Hero {
   }
 
   @Override
-  public void acceptDamageAmplifier(Angel angel) {
+  public final void acceptDamageAmplifier(final Angel angel) {
     angel.visitDamageAmplifier(this);
   }
 
   @Override
-  public void applyStrategy() {
+  public final void applyStrategy() {
     this.rogueStrategy.apply(this);
   }
 
   @Override
-  public String heroTypeAndIndex() {
+  public final String heroTypeAndIndex() {
     return "Rogue " + this.getId();
   }
 }

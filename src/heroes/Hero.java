@@ -54,15 +54,15 @@ public abstract class Hero extends java.util.Observable {
     return id;
   }
 
-  public int getXp() {
+  public final int getXp() {
     return xp;
   }
 
-  public void setXp(int xp) {
+  public final void setXp(final int xp) {
     this.xp = xp;
   }
 
-  public int getLevelUpXp() {
+  public final int getLevelUpXp() {
     return levelUpXp;
   }
 
@@ -98,11 +98,11 @@ public abstract class Hero extends java.util.Observable {
     this.siteAmplifier = siteAmplifier;
   }
 
-  public float getDamageAmplifier() {
+  public final float getDamageAmplifier() {
     return damageAmplifier;
   }
 
-  public void setDamageAmplifier(float damageAmplifier) {
+  public final void setDamageAmplifier(final float damageAmplifier) {
     this.damageAmplifier = damageAmplifier;
   }
 
@@ -154,11 +154,11 @@ public abstract class Hero extends java.util.Observable {
     this.position = position;
   }
 
-  public int getIncapacity() {
+  public final int getIncapacity() {
     return incapacity;
   }
 
-  public void setIncapacity(int incapacity) {
+  public final void setIncapacity(final int incapacity) {
     this.incapacity = incapacity;
   }
 
@@ -216,7 +216,7 @@ public abstract class Hero extends java.util.Observable {
     return 0;
   }
 
-  public boolean levelUp(Magician magician) {
+  public final boolean levelUp(final Magician magician) {
     if (this.xp >= this.levelUpXp) {
       ++this.level;
       magician.update(this, this.heroTypeAndIndex() + Constants.REACHED + this.level);
@@ -271,7 +271,7 @@ public abstract class Hero extends java.util.Observable {
 
   public abstract String heroTypeAndIndex();
 
-  public final void wasKilled(Hero hero, Magician magician) {
+  public final void wasKilled(final Hero hero, final Magician magician) {
     magician.update(this, Constants.PLAYER + this.heroTypeAndIndex() + Constants.WAS_KILLED
             + hero.heroTypeAndIndex());
   }

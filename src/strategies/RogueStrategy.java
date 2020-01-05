@@ -1,18 +1,19 @@
 package strategies;
 
 import heroes.Hero;
+import utils.Constants;
 
-public class RogueStrategy implements Strategy {
+public final class RogueStrategy implements Strategy {
   @Override
-  public void apply(Hero hero) {
-    if (hero.getMaxHp() / 7 < hero.getCurrentHp()) {
-      if (hero.getCurrentHp() < hero.getMaxHp() / 5) {
-        hero.setRaceAmplifier(hero.getRaceAmplifier() + 0.4f);
-        hero.setCurrentHp(hero.getCurrentHp() * 6 / 7);
+  public void apply(final Hero hero) {
+    if (hero.getCurrentHp() < hero.getMaxHp() / Constants.SEVEN) {
+      hero.setDamageAmplifier(hero.getDamageAmplifier() - Constants.ROGUE_STRATEGY_LOW);
+      hero.setCurrentHp(hero.getCurrentHp() * Constants.THREE / Constants.TWO);
+    } else if (hero.getMaxHp() / Constants.SEVEN < hero.getCurrentHp()) {
+      if (hero.getCurrentHp() < hero.getMaxHp() / Constants.FIVE) {
+        hero.setDamageAmplifier(hero.getDamageAmplifier() + Constants.ROGUE_STRATEGY_MEDIUM);
+        hero.setCurrentHp(hero.getCurrentHp() * Constants.SIX / Constants.SEVEN);
       }
-    } else if (hero.getCurrentHp() < hero.getMaxHp() / 7) {
-      hero.setRaceAmplifier(hero.getRaceAmplifier() - 0.1f);
-      hero.setCurrentHp(hero.getCurrentHp() * 3 / 2);
     }
   }
 }

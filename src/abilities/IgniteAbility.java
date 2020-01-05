@@ -27,8 +27,12 @@ public class IgniteAbility extends Ability {
     float amplifier = raceAmplifier * siteAmplifier;
     hero.setDamageWithoutAmplifier(hero.getDamageWithoutAmplifier()
             + Math.round(this.getCurrentDamage() * siteAmplifier));
-    hero.setDamage(hero.getDamage() + Math.round(this.getCurrentDamage() * amplifier));
-    hero.setOvertimeDamage(Math.round(this.getCurrentOvertimeDamage() * amplifier));
+//    hero.setDamage(hero.getDamage() + Math.round(this.getCurrentDamage() * amplifier));
+    int damage = Math.round(this.getCurrentDamage() * siteAmplifier);
+    hero.setDamage(hero.getDamage() + Math.round(damage * raceAmplifier));
+//    hero.setOvertimeDamage(Math.round(this.getCurrentOvertimeDamage() * amplifier));
+    int overtimeDamage = Math.round(this.getCurrentOvertimeDamage() * siteAmplifier);
+    hero.setOvertimeDamage(Math.round(overtimeDamage * raceAmplifier));
     hero.setRoundsLeft(this.getRounds());
   }
 }

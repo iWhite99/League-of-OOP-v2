@@ -9,11 +9,11 @@ public final class Magician implements java.util.Observer {
   private FileSystem fileSystem;
   private static Magician instance = null;
 
-  private Magician(FileSystem fileSystem) {
+  private Magician(final FileSystem fileSystem) {
     this.fileSystem = fileSystem;
   }
 
-  public static Magician getInstance(FileSystem fileSystem) {
+  public static Magician getInstance(final FileSystem fileSystem) {
     if (instance == null) {
       instance = new Magician(fileSystem);
     }

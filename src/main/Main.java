@@ -1,11 +1,7 @@
 package main;
 
-import heroes.HeroComparator;
-import heroes.HeroIdComparator;
 import input.GameInput;
 import input.GameLoader;
-
-import java.util.Arrays;
 
 public final class Main {
   private Main() {
