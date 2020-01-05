@@ -16,9 +16,8 @@ public final class GoodBoy extends Angel {
   @Override
   public void visitDamageAmplifier(final Knight knight) {
     if (knight.getCurrentHp() > 0) {
-      knight.setRaceAmplifier(knight.getRaceAmplifier() + Constants.GOOD_BOY_KNIGHT);
-      knight.setCurrentHp(Math.min(knight.getCurrentHp() + Constants.GOOD_BOY_KNIGHT_HP,
-              knight.getMaxHp()));
+      knight.setDamageAmplifier(knight.getDamageAmplifier() + Constants.GOOD_BOY_KNIGHT);
+      knight.setCurrentHp(knight.getCurrentHp() + Constants.GOOD_BOY_KNIGHT_HP);
       this.getMagician().update(this, Constants.GOOD_BOY_HELPED + knight.heroTypeAndIndex());
     }
   }
@@ -26,9 +25,9 @@ public final class GoodBoy extends Angel {
   @Override
   public void visitDamageAmplifier(final Pyromancer pyromancer) {
     if (pyromancer.getCurrentHp() > 0) {
-      pyromancer.setRaceAmplifier(pyromancer.getRaceAmplifier() + Constants.GOOD_BOY_PYROMANCER);
-      pyromancer.setCurrentHp(Math.min(pyromancer.getCurrentHp() + Constants.GOOD_BOY_PYROMANCER_HP,
-              pyromancer.getMaxHp()));
+      pyromancer.setDamageAmplifier(pyromancer.getDamageAmplifier()
+              + Constants.GOOD_BOY_PYROMANCER);
+      pyromancer.setCurrentHp(pyromancer.getCurrentHp() + Constants.GOOD_BOY_PYROMANCER_HP);
       this.getMagician().update(this, Constants.GOOD_BOY_HELPED + pyromancer.heroTypeAndIndex());
     }
   }
@@ -36,9 +35,8 @@ public final class GoodBoy extends Angel {
   @Override
   public void visitDamageAmplifier(final Rogue rogue) {
     if (rogue.getCurrentHp() > 0) {
-      rogue.setRaceAmplifier(rogue.getRaceAmplifier() + Constants.GOOD_BOY_ROGUE);
-      rogue.setCurrentHp(Math.min(rogue.getCurrentHp() + Constants.GOOD_BOY_ROGUE_HP,
-              rogue.getMaxHp()));
+      rogue.setDamageAmplifier(rogue.getDamageAmplifier() + Constants.GOOD_BOY_ROGUE);
+      rogue.setCurrentHp(rogue.getCurrentHp() + Constants.GOOD_BOY_ROGUE_HP);
       this.getMagician().update(this, Constants.GOOD_BOY_HELPED + rogue.heroTypeAndIndex());
     }
   }
@@ -46,9 +44,8 @@ public final class GoodBoy extends Angel {
   @Override
   public void visitDamageAmplifier(final Wizard wizard) {
     if (wizard.getCurrentHp() > 0) {
-      wizard.setRaceAmplifier(wizard.getRaceAmplifier() + Constants.GOOD_BOY_WIZARD);
-      wizard.setCurrentHp(Math.min(wizard.getCurrentHp() + Constants.GOOD_BOY_WIZARD_HP,
-              wizard.getMaxHp()));
+      wizard.setDamageAmplifier(wizard.getDamageAmplifier() + Constants.GOOD_BOY_WIZARD);
+      wizard.setCurrentHp(wizard.getCurrentHp() + Constants.GOOD_BOY_WIZARD_HP);
       this.getMagician().update(this, Constants.GOOD_BOY_HELPED + wizard.heroTypeAndIndex());
     }
   }

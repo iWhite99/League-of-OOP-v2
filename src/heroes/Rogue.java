@@ -35,6 +35,7 @@ public class Rogue extends Hero {
     site.acceptSiteAmplifier(this);
     float raceAmplifier = hero.getRaceAmplifier();
     raceAmplifier += this.getDamageAmplifier();
+    raceAmplifier -= Constants.ERROR;
     float siteAmplifier = this.getSiteAmplifier();
     backstab.applyDamage(hero, raceAmplifier, siteAmplifier, round,
             this.getDamageWithoutAmplifier(), site);
@@ -46,6 +47,7 @@ public class Rogue extends Hero {
     paralysis.acceptRaceAmplifier(hero);
     raceAmplifier = hero.getRaceAmplifier();
     raceAmplifier += this.getDamageAmplifier();
+    raceAmplifier -= Constants.ERROR;
     paralysis.applyDamage(hero, raceAmplifier, siteAmplifier, round,
             this.getDamageWithoutAmplifier(), site);
   }

@@ -50,7 +50,6 @@ public final class GameInput {
   public void run() {
     for (int i = 0; i < this.roundsNumber; i++) {
       Arrays.sort(heroes, new HeroComparator());
-//      System.out.println("~~ Round " + (i + 1) + " ~~");
       try {
         fileSystem.writeWord("~~ Round " + (i + 1) + " ~~\n");
       } catch (IOException e) {
@@ -72,15 +71,10 @@ public final class GameInput {
             // Set player as dead
             currentHero.setCurrentHp(0);
           }
-        } else if (currentHero.getRoundsLeft() == 0) {
-          // The player has the ability to move and to apply strategies
-          currentHero.setIncapacity(0);
         }
-        if (currentHero.getIncapacity() == 0) {  // && currentHero.getCurrentHp > 0
-//          System.out.println(currentHero.heroTypeAndIndex() + currentHero.getIncapacity());
+        if (currentHero.getIncapacity()[i] == 0) {
           // Apply the strategy if possible
           currentHero.applyStrategy();
-//          System.out.println(currentHero.getDamageAmplifier());
         }
       }
       for (int j = 0; j < this.heroesNumber - 1; j++) {
@@ -117,22 +111,17 @@ public final class GameInput {
             } else {
               if (firstHero.getCurrentHp() < 0) {
                 firstHero.wasKilled(secondHero, this.magician);  // First hero was killed
-                secondHero.updateHero(firstHero, this.magician);
+                secondHero.updateHero(firstHero, this.magician);  // Update the hero
               }
               if (secondHero.getCurrentHp() < 0) {
                 secondHero.wasKilled(firstHero, this.magician);  // Second hero was killed
-                firstHero.updateHero(secondHero, this.magician);
+                firstHero.updateHero(secondHero, this.magician);  // Update the hero
               }
             }
           }
         }
       }
       Arrays.sort(heroes, new HeroIdComparator());
-      System.out.println("dupa lupte");
-      for (Hero currentHero : this.heroes) {
-        System.out.println(currentHero.toString());
-      }
-      System.out.println();
       for (Angel currentAngel : this.angels.get(i)) {
         currentAngel.spawn();
         for (Hero currentHero : this.heroes) {
@@ -142,23 +131,11 @@ public final class GameInput {
           }
         }
       }
-//      System.out.println("ROUND " + i);
-//      for (Hero currentHero : this.heroes) {
-////        currentHero.applyStrategy();
-//        System.out.println(currentHero.toString());
-//      }
-//      System.out.println();
-      System.out.println("dupa ingeri");
-      for (Hero currentHero : this.heroes) {
-        System.out.println(currentHero.toString());
-      }
-      System.out.println();
       try {
         fileSystem.writeWord(Constants.NEWLINE);
       } catch (IOException e) {
         e.printStackTrace();
       }
-//      System.out.println();
     }
   }
 }

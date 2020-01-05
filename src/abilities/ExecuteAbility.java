@@ -23,22 +23,13 @@ public class ExecuteAbility extends Ability {
   public final void applyDamage(final Hero hero, final float raceAmplifier,
                                 final float siteAmplifier, final int round,
                                 final int damageTaken, final Site site) {
-    float amplifier = raceAmplifier * siteAmplifier;
-    int damage;
-    if (currentLimit * hero.getMaxHp() >= hero.getCurrentHp()) {
-      damage = hero.getCurrentHp();
-    } else {
-      damage = this.getCurrentDamage();
-    }
-    if (damage == hero.getCurrentHp()) {
-      hero.setDamage(damage);
-      hero.setDamageWithoutAmplifier(hero.getDamageWithoutAmplifier() + damage);
-    } else {
-      int damageWithSiteAmplifier = Math.round(damage * siteAmplifier);
-      hero.setDamage(hero.getDamage() + Math.round(damageWithSiteAmplifier * raceAmplifier));
-//      hero.setDamage(hero.getDamage() + Math.round(damage * amplifier));
-      hero.setDamageWithoutAmplifier(hero.getDamageWithoutAmplifier()
-              + Math.round(damage * siteAmplifier));
+    int damage = this.getCurrentDamage();
+    int damageWithSiteAmplifier = Math.round(damage * siteAmplifier);
+    hero.setDamage(hero.getDamage() + Math.round(damageWithSiteAmplifier * raceAmplifier));
+    hero.setDamageWithoutAmplifier(hero.getDamageWithoutAmplifier()
+            + damageWithSiteAmplifier);
+    if (hero.getMaxHp() * currentLimit > hero.getCurrentHp()) {
+      hero.setDamage(hero.getCurrentHp());
     }
   }
 

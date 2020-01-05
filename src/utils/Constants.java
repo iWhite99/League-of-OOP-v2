@@ -225,4 +225,6 @@ public final class Constants {
   public static final int EIGHT = 8;
   public static final int NINE = 9;
   public static final int TEN = 10;
+
+  public static final float ERROR = 0.0001f;
 }

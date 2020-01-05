@@ -33,6 +33,7 @@ public class Wizard extends Hero {
   public final void fight(final Hero hero, final Site site, final int round) {
     drain.acceptRaceAmplifier(hero);
     site.acceptSiteAmplifier(this);
+    System.out.println(this.getDamageWithoutAmplifier());
     float raceAmplifier = hero.getRaceAmplifier();
     if (raceAmplifier != 0) {
       raceAmplifier += this.getDamageAmplifier();

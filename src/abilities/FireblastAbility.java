@@ -20,12 +20,9 @@ public class FireblastAbility extends Ability {
   public final void applyDamage(final Hero hero, final float raceAmplifier,
                                 final float siteAmplifier, final int round,
                                 final int damageTaken, final Site site) {
-    float amplifier = raceAmplifier * siteAmplifier;
     hero.setDamageWithoutAmplifier(hero.getDamageWithoutAmplifier()
             + Math.round(this.getCurrentDamage() * siteAmplifier));
     int damage = Math.round(this.getCurrentDamage() * siteAmplifier);
-//    System.out.println(damage);
     hero.setDamage(hero.getDamage() + Math.round(damage * raceAmplifier));
-//    hero.setDamage(Math.round(hero.getDamage() + this.getCurrentDamage() * amplifier));
   }
 }

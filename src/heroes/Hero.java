@@ -43,7 +43,7 @@ public abstract class Hero extends java.util.Observable {
   private int overtimeDamage = 0;  // Initialize overtime damage with 0, set when attacked
   private int roundsLeft = 0;  // Initialize rounds left for overtime damage, set when attacked
   private Position position = null;  // Store the current position on the map
-  private int incapacity = 0;  // Initialize the incapacity with 0, set when needed
+  private int[] incapacity = null;  // Initialize the incapacity with null, set when needed
   private Move[] moves = null;  // Store the moves for each hero
 
   public Hero(final int id) {
@@ -154,11 +154,11 @@ public abstract class Hero extends java.util.Observable {
     this.position = position;
   }
 
-  public final int getIncapacity() {
+  public final int[] getIncapacity() {
     return incapacity;
   }
 
-  public final void setIncapacity(final int incapacity) {
+  public final void setIncapacity(final int[] incapacity) {
     this.incapacity = incapacity;
   }
 

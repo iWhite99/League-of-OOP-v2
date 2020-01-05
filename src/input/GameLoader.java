@@ -27,8 +27,8 @@ public class GameLoader {
   }
 
   public final GameInput load() {
-    int siteHeight = 0;
-    int siteWidth = 0;
+    int siteHeight;
+    int siteWidth;
     Site[][] siteMap = null;
     int heroesNumber = 0;
     Hero[] heroes = null;
@@ -61,6 +61,10 @@ public class GameLoader {
       roundsNumber = this.fileSystem.nextInt();  // Get the number of rounds
       for (int i = 0; i < heroesNumber; i++) {
         heroes[i].setMoves(new Move[roundsNumber]);  // Allocate the number of moves for each hero
+        heroes[i].setIncapacity(new int[roundsNumber]);  // Allocate the number of incapacity issues
+        for (int j = 0; j < roundsNumber; j++) {
+          heroes[i].getIncapacity()[j] = 0;  // Initialize with no incapacity issues
+        }
       }
       MoveFactory moveFactory = new MoveFactory();  // Used to generate different types of moves
       for (int i = 0; i < roundsNumber; i++) {
@@ -90,6 +94,9 @@ public class GameLoader {
       }
     } catch (IOException e) {
       e.printStackTrace();
+    }
+    if (siteMap == null) {
+      return null;
     }
     return new GameInput(siteMap, heroesNumber, heroes, roundsNumber, angels, magician,
             this.fileSystem);

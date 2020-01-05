@@ -7,6 +7,9 @@ import heroes.Wizard;
 import magician.Magician;
 import utils.Position;
 
+/**
+ * Implemented visitor pattern for different angel types.
+ */
 public abstract class Angel extends java.util.Observable {
   private Position position;
   private Magician magician;

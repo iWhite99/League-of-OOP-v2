@@ -38,14 +38,11 @@ public class Knight extends Hero {
     float siteAmplifier = this.getSiteAmplifier();
     execute.applyDamage(hero, raceAmplifier, siteAmplifier, round,
             this.getDamageWithoutAmplifier(), site);
-//    System.out.println("KNIGHT");
-//    System.out.println(hero.getDamage());
     slam.acceptRaceAmplifier(hero);
     raceAmplifier = hero.getRaceAmplifier();
     raceAmplifier += this.getDamageAmplifier();
     slam.applyDamage(hero, raceAmplifier, siteAmplifier, round,
             this.getDamageWithoutAmplifier(), site);
-//    System.out.println(hero.getDamage());
   }
 
   @Override

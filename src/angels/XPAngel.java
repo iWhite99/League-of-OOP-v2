@@ -18,7 +18,7 @@ public final class XPAngel extends Angel {
     if (knight.getCurrentHp() > 0) {
       knight.setXp(knight.getXp() + Constants.XP_ANGEL_KNIGHT);
       this.getMagician().update(this, Constants.XP_ANGEL_HELPED + knight.heroTypeAndIndex());
-      if (knight.levelUp(this.getMagician())) {
+      while (knight.levelUp(this.getMagician())) {
         knight.setCurrentHp(knight.getMaxHp());
       }
     }
@@ -29,7 +29,7 @@ public final class XPAngel extends Angel {
     if (pyromancer.getCurrentHp() > 0) {
       pyromancer.setXp(pyromancer.getXp() + Constants.XP_ANGEL_PYROMANCER);
       this.getMagician().update(this, Constants.XP_ANGEL_HELPED + pyromancer.heroTypeAndIndex());
-      if (pyromancer.levelUp(this.getMagician())) {
+      while (pyromancer.levelUp(this.getMagician())) {
         pyromancer.setCurrentHp(pyromancer.getMaxHp());
       }
     }
@@ -40,7 +40,7 @@ public final class XPAngel extends Angel {
     if (rogue.getCurrentHp() > 0) {
       rogue.setXp(rogue.getXp() + Constants.XP_ANGEL_ROGUE);
       this.getMagician().update(this, Constants.XP_ANGEL_HELPED + rogue.heroTypeAndIndex());
-      if (rogue.levelUp(this.getMagician())) {
+      while (rogue.levelUp(this.getMagician())) {
         rogue.setCurrentHp(rogue.getMaxHp());
       }
     }
@@ -51,7 +51,7 @@ public final class XPAngel extends Angel {
     if (wizard.getCurrentHp() > 0) {
       wizard.setXp(wizard.getXp() + Constants.XP_ANGEL_WIZARD);
       this.getMagician().update(this, Constants.XP_ANGEL_HELPED + wizard.heroTypeAndIndex());
-      if (wizard.levelUp(this.getMagician())) {
+      while (wizard.levelUp(this.getMagician())) {
         wizard.setCurrentHp(wizard.getMaxHp());
       }
     }
